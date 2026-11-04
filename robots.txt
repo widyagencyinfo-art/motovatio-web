@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /carteles
+Disallow: /_ia/
+
+Sitemap: https://motovatio.com/sitemap.xml

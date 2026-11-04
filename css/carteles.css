@@ -1,0 +1,45 @@
+/* Motovatio — carteles de precio para la tienda: dos por hoja A4, pensados para imprimir */
+:root{--negro:#0B0D0C;--verde:#059A49;--verde-2:#00BE5C;--gris:#6B7585;--linea:#D9DFE5}
+*{box-sizing:border-box}
+body{margin:0;background:#E9EDEB;color:var(--negro);font:400 15px/1.5 "Inter",system-ui,sans-serif}
+h1,h2,p,dl,dd{margin:0}
+
+.barra{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;padding:16px 22px;background:#fff;border-bottom:1px solid var(--linea)}
+.barra h1{font:800 1.25rem "Plus Jakarta Sans",sans-serif;letter-spacing:-.02em}
+.barra p{font-size:.88rem;color:var(--gris);max-width:60ch}
+.barra__ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.barra label{font:700 .72rem "Plus Jakarta Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.barra select{min-height:44px;padding:0 12px;border-radius:10px;border:1.5px solid var(--linea);background:#fff;font:600 .95rem "Inter",sans-serif}
+.barra span{font-size:.85rem;color:var(--gris)}
+.barra button{min-height:44px;padding:0 22px;border-radius:999px;border:0;background:var(--verde);color:#fff;font:700 .95rem "Plus Jakarta Sans",sans-serif;cursor:pointer}
+
+.carteles{display:flex;flex-direction:column;align-items:center;gap:18px;padding:22px 12px 60px}
+.cartel{flex:none;width:min(210mm,calc(100vw - 24px));aspect-ratio:210/148.5;display:flex;flex-direction:column;padding:9mm 11mm 7mm;background:#fff;border:1px solid var(--linea);overflow:hidden;container-type:inline-size}
+.cartel__top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:3.2cqw;border-bottom:.5cqw solid var(--negro)}
+.cartel__top img{height:5.6cqw;width:auto;display:block}
+.cartel__top span{font:700 1.75cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--verde);text-align:right}
+.cartel__mid{flex:1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4cqw;padding:2cqw 0}
+.cartel__nom p{font:700 2.3cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.cartel__nom h2{font:800 italic 8.4cqw/.95 "Plus Jakarta Sans",sans-serif;letter-spacing:-.03em;margin-top:.6cqw;overflow-wrap:anywhere}
+.cartel__nom small{display:block;margin-top:1.2cqw;font:600 2.3cqw "Inter",sans-serif;color:var(--gris)}
+.cartel__pr{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.cartel__pr s{font:600 3cqw "Plus Jakarta Sans",sans-serif;color:#8A94A3;text-decoration-thickness:.35cqw}
+.cartel__pr b{font:900 italic 13.5cqw/.86 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:-.01em;color:var(--verde);white-space:nowrap}
+.cartel__pr b.cartel__c{font-size:6.4cqw;color:var(--negro);white-space:normal;max-width:8ch}
+.cartel__pr small{font:600 1.75cqw "Inter",sans-serif;color:var(--verde);margin-top:.6cqw}
+.cartel__pr em{font:500 1.6cqw "Inter",sans-serif;font-style:normal;color:var(--gris);margin-top:1cqw}
+.cartel__lic{align-self:flex-start;padding:1.1cqw 2.6cqw;border-radius:99px;background:var(--negro);color:#fff;font:800 2.5cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.01em}
+.cartel__datos{display:grid;grid-template-columns:repeat(4,1fr);gap:0 2.4cqw;margin-top:2.6cqw;padding-top:2.2cqw;border-top:1px solid var(--linea)}
+.cartel__datos dt{font:700 1.5cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.cartel__datos dd{font:800 2.7cqw/1.2 "Plus Jakarta Sans",sans-serif;letter-spacing:-.01em;margin-top:.3cqw}
+.cartel__pie{display:flex;justify-content:space-between;gap:12px;margin-top:2.4cqw;font:600 1.7cqw "Inter",sans-serif;color:var(--gris)}
+
+@page{size:A4 portrait;margin:0}
+@media print{
+  body{background:#fff}
+  .barra{display:none}
+  .carteles{display:block;padding:0}
+  .cartel{width:210mm;height:148.5mm;aspect-ratio:auto;border:0;border-bottom:1px dashed #B8C0C8;break-inside:avoid;page-break-inside:avoid}
+  .cartel:nth-child(even){border-bottom:0;break-after:page;page-break-after:always}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
