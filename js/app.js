@@ -361,11 +361,12 @@
     $('#cCall').href = 'tel:+' + M.whatsapp;
     $('#cMap').src = M.mapa;
     if (!$('#lkPlus')) return;
-    var p = M.plusauto;
-    $('#lkPlus').href = p + '/vehiculos';
-    $('#lkFin').href = p + '/financiacion';
-    $('#lkTas').href = p + '/tasacion';
-    $('#lkTal').href = p + '/taller';
+    // De momento los 4 botones abren el WhatsApp de PlusAuto (hasta tener su web/número nuevo)
+    var wa = function (t) { return 'https://wa.me/' + M.plusautoWhatsapp + '?text=' + encodeURIComponent(t); };
+    $('#lkPlus').href = wa('Hola, vengo de la web de Motovatio. Me interesan los coches y motos de ocasión de PlusAuto.');
+    $('#lkFin').href = wa('Hola, vengo de la web de Motovatio. Quería información sobre financiación.');
+    $('#lkTas').href = wa('Hola, vengo de la web de Motovatio. Quería tasar mi vehículo para dejarlo como parte del pago.');
+    $('#lkTal').href = wa('Hola, vengo de la web de Motovatio. Quería pedir cita en el taller.');
     ['#lkPlus', '#lkFin', '#lkTas', '#lkTal'].forEach(function (s) { $(s).target = '_blank'; $(s).rel = 'noopener'; });
   }
 

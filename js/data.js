@@ -11,7 +11,8 @@ window.MOTOVATIO = {
   direccion: 'Avda. Cristóbal Colón, 39 · 41701 Dos Hermanas (Sevilla)',
   horario: 'Lunes a viernes, de 10:30 a 13:00 y de 17:30 a 19:30 · Sábados, de 10:30 a 13:00',
   mapa: 'https://www.google.com/maps?q=Avenida+Crist%C3%B3bal+Col%C3%B3n+39+Dos+Hermanas&output=embed',
-  plusauto: 'https://plusauto-web.vercel.app'
+  plusauto: 'https://plusauto-web.vercel.app',
+  plusautoWhatsapp: '34624078107'
 };
 
 // tipos (son también los filtros): moto · scooter · ciclomotor (45 km/h) · reparto · nanocar
