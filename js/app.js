@@ -415,7 +415,7 @@
       // El precio del pie es el de la moto de la foto, no el más bajo de la marca
       var estrella = x.modelos.filter(function (m) { return m.img; })[0], d = estrella ? (estrella.conAyudas || estrella.pvp) : 0;
       $('#bVis').innerHTML = estrella
-        ? '<figure class="bfoto"><img src="' + estrella.img + '" width="900" height="675" alt="' + esc(nombreModelo(x, estrella)) + '"><figcaption><span>' + esc(nombreModelo(x, estrella)) + '</span>' + (d ? '<b>desde ' + eur(d) + '</b>' : '') + '</figcaption></figure>'
+        ? '<figure class="bfoto"><img src="' + estrella.img + '" width="900" height="675" alt="' + esc(nombreModelo(x, estrella)) + '"><figcaption><span>' + esc(nombreModelo(x, estrella)) + '</span>' + (d ? '<b>' + eur(d) + '</b>' : '') + '</figcaption></figure>'
         : '<div class="bmark" aria-hidden="true">' + esc(x.nombre.split(' ')[0]) + '</div>';
     }
 
