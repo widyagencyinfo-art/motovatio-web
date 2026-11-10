@@ -699,3 +699,11 @@ a.cmpbtn::before{display:none}
 .legal h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
 .legal p, .legal li { line-height: 1.6; }
 .legal ul { padding-left: 1.2rem; }
+
+/* Botón flotante de WhatsApp (todas las páginas; en el móvil, encima de la barra de abajo) */
+.wa-float{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:61;display:flex;align-items:center;justify-content:center;gap:8px;width:56px;height:56px;border-radius:999px;background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.22);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.wa-float svg{width:30px;height:30px;flex:none}
+.wa-float span{display:none;font-weight:700;font-size:15px;white-space:nowrap}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+@media(min-width:860px){.wa-float{right:24px;bottom:24px;width:auto;height:56px;padding:0 20px 0 16px}.wa-float span{display:inline}}
+@media(prefers-reduced-motion:reduce){.wa-float{transition:none}.wa-float:hover{transform:none}}

@@ -4,7 +4,9 @@ window.MOTOVATIO = {
   lema: 'Motos eléctricas y movilidad urbana',
   grupo: 'Grupo PlusAuto',
   web: 'motovatio.com',
-  whatsapp: '34624078107',
+  whatsapp: '34746064193', // WhatsApp de la tienda (lo atiende Eva, la asistente; Jorge lo ve en panel.motovatio.com)
+  whatsappTxt: '746 06 41 93',
+  tel: '34624078107', // para llamar (Jorge)
   telefono: '624 078 107',
   email: 'info@motovatio.com',
   instagram: 'motovatio.sevilla',
