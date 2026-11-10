@@ -64,13 +64,13 @@
           '</div>' + links +
         '</nav>' +
         '<div class="nav__right">' +
-          '<a class="btn btn--green btn--s nav__wa" data-wa="Hola, os escribo desde la web de Motovatio.">WhatsApp</a>' +
+          '<a class="btn btn--green btn--s nav__wa" data-wa="Hola, te escribo desde la web">WhatsApp</a>' +
           '<button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>' +
         '</div>' +
       '</div>' +
       '<div class="menu" id="menu">' +
         '<details class="menu__dd" open><summary>Marcas</summary><div class="menu__marcas">' + marcasMovil + '</div></details>' +
-        links + '<a class="btn btn--green" data-wa="Hola, os escribo desde la web de Motovatio.">Pregúntanos por WhatsApp</a></div>' +
+        links + '<a class="btn btn--green" data-wa="Hola, te escribo desde la web">Pregúntanos por WhatsApp</a></div>' +
       '</header>';
     var b = $('#burger'), m = $('#menu');
     b.addEventListener('click', function () {
@@ -99,19 +99,19 @@
     marcas.push('<li><a href="motos">Todas las motos</a></li>');
     var mitad = Math.ceil(marcas.length / 2);
     var docks = {
-      home: ['Hola, he visto la Silence S02 desde 2.032 € con el Plan Auto+. ¿Me contáis cómo va?', 'Pregúntanos por WhatsApp'],
-      nano: ['Hola, quiero información del Silence S04 Nanocar y saber si puedo probarlo.', 'Pregúntanos por WhatsApp']
+      home: ['Hola, te escribo desde la web', 'Pregúntanos por WhatsApp'],
+      nano: ['Hola, quiero más información sobre el Silence S04 Nanocar.', 'Pregúntanos por WhatsApp']
     };
-    var dk = docks[pagina] || ['Hola, os escribo desde la web de Motovatio.', 'Pregúntanos por WhatsApp'];
+    var dk = docks[pagina] || ['Hola, te escribo desde la web', 'Pregúntanos por WhatsApp'];
     var fichaId = pagina === 'moto' && porId(document.body.getAttribute('data-id') || new URLSearchParams(location.search).get('id'));
-    if (fichaId) dk = ['Hola, quería preguntar por ' + art(fichaId) + nombreModelo(fichaId.marca, fichaId) + '.', 'Pregúntanos por WhatsApp'];
+    if (fichaId) dk = ['Hola, quiero más información sobre ' + art(fichaId) + nombreModelo(fichaId.marca, fichaId) + '.', 'Pregúntanos por WhatsApp'];
     $('#siteFooter').outerHTML =
       '<footer class="foot"><div class="wrap">' +
         '<div class="foot__in">' +
           '<div class="foot__logo"><img src="img/logo-horizontal-blanco.svg" width="1046" height="178" alt="Motovatio"><p>El espacio de movilidad eléctrica de ' + esc(M.grupo) + '.</p></div>' +
           '<div><h4>Marcas</h4><ul>' + marcas.slice(0, mitad).join('') + '</ul></div>' +
           '<div><h4>&nbsp;</h4><ul>' + marcas.slice(mitad).join('') + '</ul></div>' +
-          '<div><h4>Tienda</h4><ul><li>' + esc(M.direccion) + '</li>' + M.horario.split(' · ').map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '<li><a href="tel:+' + M.tel + '">Teléfono ' + M.telefono + '</a></li><li><a data-wa="Hola, os escribo desde la web de Motovatio." target="_blank" rel="noopener">WhatsApp ' + M.whatsappTxt + '</a></li><li><a href="mailto:' + M.email + '">' + M.email + '</a></li><li><a href="https://www.instagram.com/' + M.instagram + '/" target="_blank" rel="noopener">Instagram @' + M.instagram + '</a></li></ul></div>' +
+          '<div><h4>Tienda</h4><ul><li>' + esc(M.direccion) + '</li>' + M.horario.split(' · ').map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '<li><a href="tel:+' + M.tel + '">Teléfono ' + M.telefono + '</a></li><li><a data-wa="Hola, te escribo desde la web" target="_blank" rel="noopener">WhatsApp ' + M.whatsappTxt + '</a></li><li><a href="mailto:' + M.email + '">' + M.email + '</a></li><li><a href="https://www.instagram.com/' + M.instagram + '/" target="_blank" rel="noopener">Instagram @' + M.instagram + '</a></li></ul></div>' +
         '</div>' +
         '<p class="foot__zonas"><span>Motos eléctricas en</span> <a href="./">Dos Hermanas</a>' + ZONAS.map(function (z) { return '<a href="motos-electricas-' + z[0] + '">' + esc(z[1]) + '</a>'; }).join('') + '</p>' +
         '<div class="foot__legal"><span>© ' + new Date().getFullYear() + ' Motovatio · ' + esc(M.grupo) + '</span><span>Las marcas y los modelos mostrados pertenecen a sus fabricantes.</span></div>' +
@@ -186,7 +186,7 @@
         (mo.img ? (pagina === 'moto' ? '' : '<a href="' + uMoto(mo.id) + '">') + '<img class="mod__img" src="' + mo.img + '" width="900" height="675" alt="' + esc(nombre) + '" loading="lazy">' + (pagina === 'moto' ? '' : '</a>') : '') +
         '<div class="mod__pr">' + precioHtml(mo) + '</div>' +
         '<div class="mod__cta">' +
-          '<a class="btn btn--green" href="' + wa('Hola, quería preguntar por ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
+          '<a class="btn btn--green" href="' + wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
           '<a class="btn btn--line" href="tel:+' + M.tel + '">Llamar</a>' +
         '</div>' +
         (pagina === 'moto' ? '' : '<a class="link mod__mas" href="' + uMoto(mo.id) + '">Ver la ficha completa y comparar</a>') +
@@ -304,7 +304,7 @@
           licHtml(mo) +
           '<p class="prod__dest">' + esc(mo.destacado) + '</p>' +
           '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
-          '<a class="btn btn--navy" href="' + wa('Hola, quería preguntar por ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
+          '<a class="btn btn--navy" href="' + wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
         '</div></article>';
     }).join('');
     // «desde X €» en los accesos de «¿Qué necesitas hoy?»
@@ -360,7 +360,7 @@
     $('#cDir').textContent = M.direccion;
     $('#cHor').innerHTML = M.horario.split(' · ').map(esc).join('<br>');
     $('#cTel').textContent = M.telefono;
-    if ($('#cWaTxt')) { $('#cWaTxt').textContent = M.whatsappTxt; $('#cWaTxt').setAttribute('data-wa', 'Hola, os escribo desde la web de Motovatio.'); }
+    if ($('#cWaTxt')) { $('#cWaTxt').textContent = M.whatsappTxt; $('#cWaTxt').setAttribute('data-wa', 'Hola, te escribo desde la web'); }
     if ($('#cIg')) { $('#cIg').href = 'https://www.instagram.com/' + M.instagram + '/'; $('#cIg').textContent = '@' + M.instagram; }
     $('#cCall').href = 'tel:+' + M.tel;
     $('#cMap').src = M.mapa;
@@ -471,7 +471,7 @@
         '<div class="nano__pr">' + (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : (mo.pvp ? '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>' : '<b class="prod__c">Precio a consultar</b>')) + gastosHtml() + '</div>' +
         '<dl class="nano__datos">' + filas.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
         '<p class="nano__carnet"><b>Carnet:</b> ' + esc(mo.carnet) + '</p>' +
-        '<a class="btn btn--green" href="' + wa('Hola, quería preguntar por el ' + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
+        '<a class="btn btn--green" href="' + wa('Hola, quiero más información sobre el ' + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
         '<a class="btn btn--line" href="' + uMoto(mo.id) + '">Ver la ficha completa</a>' +
       '</article>';
     }).join('');
@@ -651,7 +651,7 @@
     $('#fPrecio').innerHTML = (mo.pvp
       ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>')
       : '<b class="fprecio__c">Precio a consultar</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '');
-    $('#fWa').href = wa('Hola, quería preguntar por ' + art(mo) + nombre + '.');
+    $('#fWa').href = wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.');
     $('#fWa').target = '_blank'; $('#fWa').rel = 'noopener';
     $('#fPrueba').href = 'tel:+' + M.tel;
     $('#fVis').innerHTML = '<figure class="bfoto"><img src="' + mo.img + '" width="900" height="675" alt="' + esc(nombre) + '"></figure>';
@@ -724,7 +724,7 @@
           (hueco ? '<span class="cmp__vacio"></span>' : '') + '</div></div>';
       }).join('');
       var pie = '<div class="cmp__f cmp__f--cta"><div class="cmp__v">' + ms.map(function (mo) {
-        return '<span><a class="btn btn--green btn--s" href="' + wa('Hola, quería preguntar por ' + art(mo) + nombreModelo(mo.marca, mo) + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a></span>';
+        return '<span><a class="btn btn--green btn--s" href="' + wa('Hola, quiero más información sobre ' + art(mo) + nombreModelo(mo.marca, mo) + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a></span>';
       }).join('') + (hueco ? '<span></span>' : '') + '</div></div>';
       caja.innerHTML = ms.length ? '<div class="cmp__cab">' + cab + '</div>' + cuerpo + pie : '<div class="cmp__cab">' + cab + '</div>';
       $('#cmpAyuda').textContent = ms.length < 2 ? (ms.length ? 'Añade otra moto para ver las diferencias.' : 'Elige dos o tres motos y las verás lado a lado.') : 'En verde, la que gana en cada dato.';
