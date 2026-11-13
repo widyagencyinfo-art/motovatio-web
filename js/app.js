@@ -111,7 +111,7 @@
           '<div class="foot__logo"><img src="img/logo-horizontal-blanco.svg" width="1046" height="178" alt="Motovatio"><p>El espacio de movilidad eléctrica de ' + esc(M.grupo) + '.</p></div>' +
           '<div><h4>Marcas</h4><ul>' + marcas.slice(0, mitad).join('') + '</ul></div>' +
           '<div><h4>&nbsp;</h4><ul>' + marcas.slice(mitad).join('') + '</ul></div>' +
-          '<div><h4>Tienda</h4><ul><li>' + esc(M.direccion) + '</li>' + M.horario.split(' · ').map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '<li><a href="tel:+' + M.tel + '">Teléfono ' + M.telefono + '</a></li><li><a data-wa="Hola, te escribo desde la web" target="_blank" rel="noopener">WhatsApp ' + M.whatsappTxt + '</a></li><li><a href="mailto:' + M.email + '">' + M.email + '</a></li><li><a href="https://www.instagram.com/' + M.instagram + '/" target="_blank" rel="noopener">Instagram @' + M.instagram + '</a></li></ul></div>' +
+          '<div><h4>Tienda</h4><ul><li>' + esc(M.direccion) + '</li>' + M.horario.split(' · ').map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '<li><a href="tel:+' + M.tel + '">Teléfono ' + M.telefono + '</a></li><li><a data-wa="Hola, te escribo desde la web" target="_blank" rel="noopener">WhatsApp ' + M.whatsappTxt + '</a></li><li><a href="mailto:' + M.email + '">' + M.email + '</a></li><li><a href="https://www.instagram.com/' + M.instagram + '/" target="_blank" rel="noopener">Instagram @' + M.instagram + '</a></li>' + (M.facebook ? '<li><a href="' + M.facebook + '" target="_blank" rel="noopener">Facebook Motovatio</a></li>' : '') + (M.tiktok ? '<li><a href="https://www.tiktok.com/@' + M.tiktok + '" target="_blank" rel="noopener">TikTok @' + M.tiktok + '</a></li>' : '') + '</ul></div>' +
         '</div>' +
         '<p class="foot__zonas"><span>Motos eléctricas en</span> <a href="./">Dos Hermanas</a>' + ZONAS.map(function (z) { return '<a href="motos-electricas-' + z[0] + '">' + esc(z[1]) + '</a>'; }).join('') + '</p>' +
         '<div class="foot__legal"><span>© ' + new Date().getFullYear() + ' Motovatio · ' + esc(M.grupo) + '</span><span>Las marcas y los modelos mostrados pertenecen a sus fabricantes.</span></div>' +
@@ -359,6 +359,7 @@
     if (!$('#cDir')) return;
     $('#cDir').textContent = M.direccion;
     $('#cHor').innerHTML = M.horario.split(' · ').map(esc).join('<br>');
+    if ($('#cFb')) { if (M.facebook) { $('#cFb').href = M.facebook; $('#cFb').textContent = 'Motovatio'; } else $('#cFb').closest('li').remove(); }
     $('#cTel').textContent = M.telefono;
     if ($('#cWaTxt')) { $('#cWaTxt').textContent = M.whatsappTxt; $('#cWaTxt').setAttribute('data-wa', 'Hola, te escribo desde la web'); }
     if ($('#cIg')) { $('#cIg').href = 'https://www.instagram.com/' + M.instagram + '/'; $('#cIg').textContent = '@' + M.instagram; }
