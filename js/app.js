@@ -456,32 +456,45 @@
   /* ---------- novedades y reservas anticipadas (window.NOVEDADES) ---------- */
   function paginaNovedades() {
     var N = window.NOVEDADES; if (!N || !$('#novs')) return;
-    $('#novs').innerHTML = N.modelos.map(function (m) {
+    var tot = N.modelos.length;
+    $('#novs').innerHTML = N.modelos.map(function (m, k) {
       var cols = (m.colores || []).map(function (c, i) {
-        return '<button type="button" class="nov__col' + (i ? '' : ' on') + '" data-img="' + c.img + '" aria-label="Ver en ' + esc(c.n) + '">' + esc(c.n) + '</button>';
+        return '<button type="button" class="nv-sw' + (i ? '' : ' on') + '" data-img="' + c.img + '" data-c="' + esc(c.n) + '" aria-label="Ver en ' + esc(c.n) + '" title="' + esc(c.n) + '"><i style="background:' + (c.hex || '#888') + '"></i></button>';
       }).join('');
-      var pr = m.precio ? m.precio.map(function (p) { return '<span><small>' + esc(p[0]) + '</small><b>' + eur(p[1]) + '</b></span>'; }).join('') : '<span><b class="prod__c">Precio a confirmar</b></span>';
-      return '<article class="nov" id="' + m.id + '">' +
-        '<div class="nov__img">' + (m.img ? '<img src="' + m.img + '" width="900" height="600" alt="' + esc(m.nombre) + '" loading="lazy">' : '<p class="nov__sinfoto">Foto próximamente</p>') + '</div>' +
-        (cols ? '<div class="nov__cols">' + cols + '</div>' : '') +
-        '<div class="nov__body">' +
-          '<p class="nano__v">' + esc(m.etiqueta) + '</p>' +
+      var pr = m.precio ? m.precio.map(function (p) { return '<span><small>' + esc(p[0]) + '</small><b>' + eur(p[1]) + '</b></span>'; }).join('') : '<span><b class="nv-conf">Precio a confirmar</b></span>';
+      var vis = m.img ? '<img src="' + m.img + '" width="900" height="600" alt="' + esc(m.nombre) + '" loading="lazy">' : '<p class="nv-sinfoto"><i></i>Foto próximamente</p>';
+      return '<article class="nv-moto' + (k % 2 ? ' nv-moto--inv' : '') + '" id="' + m.id + '">' +
+        '<div class="nv-moto__vis' + (m.img ? ' nv-moto__vis--foto' : '') + '"' + (m.img && m.fondo ? ' style="background:' + m.fondo + '"' : '') + '>' +
+          '<span class="nv-moto__idx">' + ('0' + (k + 1)) + '<small>/ 0' + tot + '</small></span>' +
+          '<span class="nv-moto__ghost" aria-hidden="true">' + esc(m.corto) + '</span>' +
+          '<div class="nv-moto__img">' + vis + '</div>' +
+          (cols ? '<div class="nv-sws"><span class="nv-sws__n">' + esc(m.colores[0].n) + '</span>' + cols + '</div>' : '') +
+        '</div>' +
+        '<div class="nv-moto__body">' +
+          '<p class="nv-chip">' + esc(m.etiqueta) + '</p>' +
           '<h3>' + esc(m.nombre) + '</h3>' +
-          '<p class="nov__frase">' + esc(m.frase) + '</p>' +
-          '<p class="nano__d">' + esc(m.txt) + '</p>' +
-          '<p class="nov__llega"><b>Llegada:</b> ' + esc(m.llegada) + '</p>' +
-          '<div class="nov__pr"><em>' + esc(m.precioNota) + '</em>' + pr + '</div>' +
-          '<dl class="nano__datos">' + m.datos.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
-          '<a class="btn btn--green" href="' + wa(m.wa) + '" target="_blank" rel="noopener">Reservar con ' + eur(N.senal) + '</a>' +
+          '<p class="nv-moto__frase">' + esc(m.frase) + '</p>' +
+          '<p class="nv-moto__txt">' + esc(m.txt) + '</p>' +
+          '<div class="nv-moto__fila">' +
+            '<div class="nv-pr"><em>' + esc(m.precioNota) + '</em><div>' + pr + '</div></div>' +
+            '<div class="nv-llega"><em>Llegada</em><b>' + esc(m.llegada) + '</b></div>' +
+          '</div>' +
+          '<dl class="nv-datos">' + m.datos.map(function (f) { return '<div><dt>' + esc(f[0]) + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
+          '<a class="nv-btn nv-btn--solid nv-btn--full" href="' + wa(m.wa) + '" target="_blank" rel="noopener">Reservar con ' + eur(N.senal) + '</a>' +
         '</div></article>';
     }).join('');
-    $$('.nov__col').forEach(function (b) {
+    $$('.nv-sw').forEach(function (b) {
       b.addEventListener('click', function () {
-        var card = b.closest('.nov'); card.querySelector('.nov__img img').src = b.getAttribute('data-img');
-        $$('.nov__col', card).forEach(function (o) { o.classList.toggle('on', o === b); });
+        var card = b.closest('.nv-moto'); var im = card.querySelector('.nv-moto__img img');
+        im.style.opacity = 0; setTimeout(function () { im.src = b.getAttribute('data-img'); im.style.opacity = 1; }, 160);
+        card.querySelector('.nv-sws__n').textContent = b.getAttribute('data-c');
+        $$('.nv-sw', card).forEach(function (o) { o.classList.toggle('on', o === b); });
       });
     });
-    if ($('#novAviso') && N.aviso) $('#novAviso').textContent = N.aviso;
+    if ($('#novAviso') && N.aviso) {
+      var t = N.aviso, i = t.indexOf(':');
+      $('#novAviso').innerHTML = '<i></i><span><b>' + esc(t.slice(0, i)) + '</b>' + esc(t.slice(i + 1)) + '</span>';
+    }
   }
 
   /* ---------- página de nanocars: el Silence S04, una tarjeta por versión ---------- */

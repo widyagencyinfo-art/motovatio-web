@@ -8,11 +8,12 @@ window.NOVEDADES = {
       frase: 'La aventura eléctrica de 39,7 CV con carnet A1.',
       txt: 'Radar de 77 GHz, cámaras delantera y trasera, pantalla táctil de 7" y 134 km de autonomía combinada. La distribuye Silence.',
       img: 'img/novedades/x47-negra.webp',
+      fondo: '#d3d3d4',
       colores: [
-        { n: 'Negra (Shadow)', img: 'img/novedades/x47-negra.webp' },
-        { n: 'Blanca (Airstrike)', img: 'img/novedades/x47-blanca.webp' },
-        { n: 'Roja (Turbo Red)', img: 'img/novedades/x47-roja.webp' },
-        { n: 'Amarilla (Afterburner)', img: 'img/novedades/x47-amarilla.webp' }
+        { n: 'Negra (Shadow)', hex: '#16181a', img: 'img/novedades/x47-negra.webp' },
+        { n: 'Blanca (Airstrike)', hex: '#f1f1ee', img: 'img/novedades/x47-blanca.webp' },
+        { n: 'Roja (Turbo Red)', hex: '#c8202a', img: 'img/novedades/x47-roja.webp' },
+        { n: 'Amarilla (Afterburner)', hex: '#f2c200', img: 'img/novedades/x47-amarilla.webp' }
       ],
       precio: [['Negra', 8450], ['Otros colores', 8750]],
       precioNota: 'Precio de lanzamiento',
@@ -33,6 +34,7 @@ window.NOVEDADES = {
       frase: 'El S02 vestido de Ducati Corse.',
       txt: 'Edición Rosso Ducati del scooter urbano de Silence, con batería extraíble. Se conduce con carnet B desde los 3 años de carnet.',
       img: 'img/modelos/silence-s02-l3e.webp',
+      fondo: '#f4f5f5',
       precio: [['PVP España', 4290]],
       precioNota: 'Precio de venta recomendado',
       llegada: 'Finales de enero de 2027',

@@ -16,57 +16,59 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20261113d">
+<link rel="stylesheet" href="css/styles.css?v=20261113h">
 </head>
 <body data-page="novedades">
 
 <div id="siteHeader"></div>
 
 <main>
-  <section class="bhero">
-    <div class="wrap">
-      <a class="back" href="./">Inicio</a>
-      <div class="bhero__in">
-        <div>
-          <p class="bhero__tags"><span class="tag tag--green">Próximas llegadas</span><span class="tag">Silence</span><span class="tag">Reserva con 500 €</span></p>
-          <h1>Novedades y reservas anticipadas</h1>
-          <p class="bhero__frase">Las motos que van a llegar. Resérvala hoy y tendrás la tuya antes que nadie.</p>
-          <p class="bhero__txt">Con 500 € apartas una unidad antes de que llegue a Motovatio. Te avisamos en cuanto esté en tienda y te la dejamos lista para probar y matricular.</p>
-          <div class="hero__cta">
-            <a class="btn btn--green" href="#modelos">Ver las novedades</a>
-            <a class="btn btn--ghost" href="#como">Cómo se reserva</a>
-          </div>
+  <section class="nv-hero">
+    <div class="nv-hero__glow"></div>
+    <div class="wrap nv-hero__in">
+      <div class="nv-hero__txt">
+        <p class="nv-kicker"><i></i>Próximas llegadas · Silence</p>
+        <h1>Las motos que <em>van a llegar.</em><br>Tuyas antes que de nadie.</h1>
+        <p class="nv-hero__p">Aparta una unidad con 500 € antes de que aterrice en Motovatio. Te avisamos en cuanto esté en tienda y te la dejamos lista para probar y matricular.</p>
+        <div class="nv-hero__cta">
+          <a class="nv-btn nv-btn--solid" href="#modelos">Ver las novedades</a>
+          <a class="nv-btn nv-btn--ghost" href="#como">Cómo se reserva</a>
         </div>
-        <div class="bhero__vis"><img class="nov__hero" src="img/novedades/x47-negra-3q.webp" width="900" height="600" alt="Ultraviolette X-47 Venom, próxima novedad de Silence"></div>
+        <ul class="nv-hero__stats">
+          <li><b>500 €</b><span>para reservar</span></li>
+          <li><b>4</b><span>modelos nuevos</span></li>
+          <li><b>2027</b><span>primeras entregas</span></li>
+        </ul>
       </div>
+      <div class="nv-hero__vis"><img src="img/novedades/x47-negra-3q.webp" width="900" height="600" alt="Ultraviolette X-47 Venom, próxima novedad de Silence"></div>
     </div>
   </section>
 
-  <section class="sec" id="modelos">
+  <section class="nv-sec" id="modelos">
     <div class="wrap">
-      <div class="sec__head">
-        <div>
-          <p class="eyebrow">Próximos modelos</p>
-          <h2>Lo que va a llegar, <em>con fecha y precio.</em></h2>
-        </div>
-        <p class="sec__lead">Datos que nos ha pasado Silence en noviembre de 2026. Las fechas son estimadas y pueden cambiar.</p>
+      <div class="nv-head">
+        <p class="nv-eyebrow">Próximos modelos</p>
+        <h2>Lo que va a llegar, <em>con fecha y precio.</em></h2>
+        <p class="nv-lead">Datos que nos ha pasado Silence en noviembre de 2026. Las fechas son estimadas y pueden cambiar.</p>
       </div>
-      <div class="novs" id="novs"></div>
-      <p class="nov__aviso" id="novAviso"></p>
+      <div class="nv-list" id="novs"></div>
+      <p class="nv-stock" id="novAviso"></p>
     </div>
   </section>
 
-  <section class="sec sec--soft" id="como">
+  <section class="nv-sec nv-sec--como" id="como">
     <div class="wrap">
-      <p class="eyebrow">Reserva anticipada</p>
-      <h2>Cómo funciona la reserva <em>de 500 €.</em></h2>
-      <div class="facts">
-        <article class="fact"><span class="fact__n">01</span><h3>Eliges la moto</h3><p>Pulsa «Reservar con 500 €» en el modelo que quieres y nos escribes por WhatsApp.</p></article>
-        <article class="fact"><span class="fact__n">02</span><h3>Pagas con factura</h3><p>Jorge te manda por WhatsApp una factura de 500 € para reservar esa moto en concreto. Al pagarla, apartamos una unidad a tu nombre.</p></article>
-        <article class="fact"><span class="fact__n">03</span><h3>Te avisamos</h3><p>Cuando la moto llega a Motovatio te llamamos para que la veas, la pruebes y cierres el resto.</p></article>
-        <article class="fact"><span class="fact__n">04</span><h3>Se descuenta del precio</h3><p>Los 500 € van a cuenta del precio final de tu moto.</p></article>
+      <div class="nv-head">
+        <p class="nv-eyebrow">Reserva anticipada</p>
+        <h2>Cómo funciona la reserva <em>de 500 €.</em></h2>
       </div>
-      <p class="note">Precios y fechas de llegada estimados por Silence en noviembre de 2026, sujetos a cambios. Si tienes dudas, pregúntanos antes de pagar la factura.</p>
+      <div class="nv-steps">
+        <article><span>01</span><h3>Eliges la moto</h3><p>Pulsa «Reservar con 500 €» en el modelo que quieres y nos escribes por WhatsApp.</p></article>
+        <article><span>02</span><h3>Pagas con factura</h3><p>Jorge te manda por WhatsApp una factura de 500 € para reservar esa moto en concreto. Al pagarla, apartamos una unidad a tu nombre.</p></article>
+        <article><span>03</span><h3>Te avisamos</h3><p>Cuando la moto llega a Motovatio te llamamos para que la veas, la pruebes y cierres el resto.</p></article>
+        <article><span>04</span><h3>Se descuenta del precio</h3><p>Los 500 € van a cuenta del precio final de tu moto.</p></article>
+      </div>
+      <p class="nv-note">Precios y fechas de llegada estimados por Silence en noviembre de 2026, sujetos a cambios. Si tienes dudas, pregúntanos antes de pagar la factura.</p>
     </div>
   </section>
 
@@ -92,9 +94,9 @@
 
 <div id="siteFooter"></div>
 
-<script src="js/data.js?v=20261113d"></script>
-<script src="js/precios.js?v=20261113d"></script>
-<script src="js/novedades.js?v=20261113d"></script>
-<script src="js/app.js?v=20261113d"></script>
+<script src="js/data.js?v=20261113h"></script>
+<script src="js/precios.js?v=20261113h"></script>
+<script src="js/novedades.js?v=20261113h"></script>
+<script src="js/app.js?v=20261113h"></script>
 </body>
 </html>
