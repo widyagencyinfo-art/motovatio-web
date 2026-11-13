@@ -9,7 +9,7 @@ window.MOTOVATIO = {
   tel: '34624078107', // para llamar (Jorge)
   telefono: '624 078 107',
   email: 'info@motovatio.com',
-  instagram: 'motovatio.sevilla',
+  instagram: 'motovatio.oficial',
   facebook: 'https://www.facebook.com/61595416928368', // página «Motovatio» (id de Meta)
   tiktok: 'motovatio.oficial',
   direccion: 'Avda. Cristóbal Colón, 39 · 41701 Dos Hermanas (Sevilla)',
