@@ -40,11 +40,12 @@
     var enlaces = [
       ['motos', 'Motos'],
       ['nanocars', 'Nanocars'],
+      ['novedades', 'Novedades y reservas'],
       ['comparar', 'Comparar'],
       [raiz + '#carnet', 'Carnets'],
       [raiz + '#contacto', 'Contacto']
     ];
-    var links = enlaces.map(function (e) { return '<a href="' + e[0] + '"' + (e[0] === 'nanocars' ? ' class="nav__nano"' : '') + '>' + e[1] + '</a>'; }).join('');
+    var links = enlaces.map(function (e) { return '<a href="' + e[0] + '"' + (e[0] === 'nanocars' ? ' class="nav__nano"' : e[0] === 'novedades' ? ' class="nav__nuevo"' : '') + '>' + e[1] + '</a>'; }).join('');
     var tiposDe = function (x) { return x.tipos.map(function (t) { return TIPOS[t].n.toLowerCase(); }).join(', '); };
     var marcasDd = MARCAS.map(function (x) {
       return '<a href="' + uMarca(x.slug) + '"><b>' + esc(x.nombre) + '</b><span>' + x.modelos.length + (x.modelos.length === 1 ? ' modelo' : ' modelos') + '</span><em>' + esc(tiposDe(x)) + '</em></a>';
@@ -96,6 +97,7 @@
   function pie() {
     var marcas = MARCAS.map(function (x) { return '<li><a href="' + uMarca(x.slug) + '">' + esc(x.nombre) + '</a></li>'; });
     marcas.push('<li><a href="nanocars">Nanocars</a></li>');
+    marcas.push('<li><a href="novedades">Novedades y reservas</a></li>');
     marcas.push('<li><a href="motos">Todas las motos</a></li>');
     var mitad = Math.ceil(marcas.length / 2);
     var docks = {
@@ -451,6 +453,37 @@
     }).join('') + '<p class="nhome__nota">*Precio final que publica Silence con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF. ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
   }
 
+  /* ---------- novedades y reservas anticipadas (window.NOVEDADES) ---------- */
+  function paginaNovedades() {
+    var N = window.NOVEDADES; if (!N || !$('#novs')) return;
+    $('#novs').innerHTML = N.modelos.map(function (m) {
+      var cols = (m.colores || []).map(function (c, i) {
+        return '<button type="button" class="nov__col' + (i ? '' : ' on') + '" data-img="' + c.img + '" aria-label="Ver en ' + esc(c.n) + '">' + esc(c.n) + '</button>';
+      }).join('');
+      var pr = m.precio ? m.precio.map(function (p) { return '<span><small>' + esc(p[0]) + '</small><b>' + eur(p[1]) + '</b></span>'; }).join('') : '<span><b class="prod__c">Precio a confirmar</b></span>';
+      return '<article class="nov" id="' + m.id + '">' +
+        '<div class="nov__img">' + (m.img ? '<img src="' + m.img + '" width="900" height="600" alt="' + esc(m.nombre) + '" loading="lazy">' : '<p class="nov__sinfoto">Foto próximamente</p>') + '</div>' +
+        (cols ? '<div class="nov__cols">' + cols + '</div>' : '') +
+        '<div class="nov__body">' +
+          '<p class="nano__v">' + esc(m.etiqueta) + '</p>' +
+          '<h3>' + esc(m.nombre) + '</h3>' +
+          '<p class="nov__frase">' + esc(m.frase) + '</p>' +
+          '<p class="nano__d">' + esc(m.txt) + '</p>' +
+          '<p class="nov__llega"><b>Llegada:</b> ' + esc(m.llegada) + '</p>' +
+          '<div class="nov__pr"><em>' + esc(m.precioNota) + '</em>' + pr + '</div>' +
+          '<dl class="nano__datos">' + m.datos.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
+          '<a class="btn btn--green" href="' + wa(m.wa) + '" target="_blank" rel="noopener">Reservar con ' + eur(N.senal) + '</a>' +
+        '</div></article>';
+    }).join('');
+    $$('.nov__col').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var card = b.closest('.nov'); card.querySelector('.nov__img img').src = b.getAttribute('data-img');
+        $$('.nov__col', card).forEach(function (o) { o.classList.toggle('on', o === b); });
+      });
+    });
+    if ($('#novAviso') && N.aviso) $('#novAviso').textContent = N.aviso;
+  }
+
   /* ---------- página de nanocars: el Silence S04, una tarjeta por versión ---------- */
   function paginaNano() {
     var lista = TODOS.filter(function (m) { return m.tipo === 'nano'; });
@@ -747,6 +780,7 @@
   if (pagina === 'home') { cuentaPrecio(); marquesina(); marcas(); destacadas(); nanoPortada(); frente125(); calculadora(); contacto(); }
   if (pagina === 'marca') paginaMarca();
   if (pagina === 'nano') { paginaNano(); contacto(); }
+  if (pagina === 'novedades') { paginaNovedades(); contacto(); }
   if (pagina === 'motos') paginaMotos();
   if (pagina === 'moto') paginaMoto();
   if (pagina === 'comparar') paginaComparar();

@@ -707,3 +707,28 @@ a.cmpbtn::before{display:none}
 .wa-float:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
 @media(min-width:860px){.wa-float{right:24px;bottom:24px;width:auto;height:56px;padding:0 20px 0 16px}.wa-float span{display:inline}}
 @media(prefers-reduced-motion:reduce){.wa-float{transition:none}.wa-float:hover{transform:none}}
+
+/* ---------- novedades y reservas anticipadas ---------- */
+.nav__nuevo{position:relative}
+.nav__nuevo::after{content:"Nuevo";display:inline-block;margin-left:6px;padding:2px 6px;border-radius:999px;background:var(--green);color:#fff;font:700 .58rem var(--font-t);letter-spacing:.06em;text-transform:uppercase;vertical-align:.12em}
+.nov__hero{width:100%;max-width:520px;height:auto}
+.novs{display:grid;gap:18px}
+.nov{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden}
+.nov__img{display:grid;place-items:center;min-height:220px;padding:18px;background:var(--soft)}
+.nov__img img{max-height:260px;width:auto;max-width:100%}
+.nov__sinfoto{font:700 .8rem var(--font-t);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.nov__cols{display:flex;flex-wrap:wrap;gap:6px;padding:12px 26px 0}
+.nov__col{padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font:600 .78rem var(--font-b);color:var(--ink);cursor:pointer}
+.nov__col.on{border-color:var(--green);color:var(--green)}
+.nov__body{display:flex;flex-direction:column;gap:10px;padding:22px 26px 26px;flex:1}
+.nov h3{font:800 1.6rem/1.08 var(--font-t);letter-spacing:-.02em}
+.nov__frase{font-weight:600;color:var(--ink)}
+.nov__llega{font-size:.92rem}
+.nov__pr{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 22px}
+.nov__pr em{flex-basis:100%;font:700 .66rem var(--font-t);letter-spacing:.11em;text-transform:uppercase;color:var(--mute);font-style:normal}
+.nov__pr span{display:flex;flex-direction:column}
+.nov__pr small{font:600 .74rem var(--font-b);color:var(--mute)}
+.nov__pr b{font:800 italic 2rem/1 var(--font-t);letter-spacing:-.03em;color:var(--green)}
+.nov .btn{width:100%;margin-top:6px}
+.nov__aviso{margin-top:22px;padding:16px 20px;border-radius:var(--r);background:var(--soft);font-weight:600;color:var(--ink)}
+@media(min-width:900px){.novs{grid-template-columns:repeat(2,1fr)}}
