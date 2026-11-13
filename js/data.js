@@ -11,6 +11,7 @@ window.MOTOVATIO = {
   email: 'info@motovatio.com',
   instagram: 'motovatio.sevilla',
   facebook: 'https://www.facebook.com/61595416928368', // página «Motovatio» (id de Meta)
+  tiktok: 'motovatio.oficial',
   direccion: 'Avda. Cristóbal Colón, 39 · 41701 Dos Hermanas (Sevilla)',
   horario: 'Lunes a viernes, de 10:00 a 14:00 y de 17:00 a 20:00 · Sábados, de 10:00 a 14:00',
   mapa: 'https://www.google.com/maps?q=Avenida+Crist%C3%B3bal+Col%C3%B3n+39+Dos+Hermanas&output=embed',

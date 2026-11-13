@@ -360,6 +360,7 @@
     $('#cDir').textContent = M.direccion;
     $('#cHor').innerHTML = M.horario.split(' · ').map(esc).join('<br>');
     if ($('#cFb')) { if (M.facebook) { $('#cFb').href = M.facebook; $('#cFb').textContent = 'Motovatio'; } else $('#cFb').closest('li').remove(); }
+    if ($('#cTk')) { if (M.tiktok) { $('#cTk').href = 'https://www.tiktok.com/@' + M.tiktok; $('#cTk').textContent = '@' + M.tiktok; } else $('#cTk').closest('li').remove(); }
     $('#cTel').textContent = M.telefono;
     if ($('#cWaTxt')) { $('#cWaTxt').textContent = M.whatsappTxt; $('#cWaTxt').setAttribute('data-wa', 'Hola, te escribo desde la web'); }
     if ($('#cIg')) { $('#cIg').href = 'https://www.instagram.com/' + M.instagram + '/'; $('#cIg').textContent = '@' + M.instagram; }
