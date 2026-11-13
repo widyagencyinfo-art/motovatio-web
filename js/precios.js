@@ -43,7 +43,7 @@ window.PRECIOS = {
   'niu-nqi-sport': { pvp: 1999 },                                        // NQi Sport
   'niu-nqix-150': { pvp: 2799 },                                         // NQiX 150
   'niu-fqix-150': { pvp: 2499 },                                         // FQiX 150
-  // 'niu-xqi3-street': a consultar  (XQi3 Street)
+  'niu-xqi3-street': { pvp: 3499 }, // XQi3 Street (web oficial de NIU España, «desde 3.499 €», 13-nov)
 
   // Zero
   'zero-s-11-kw': { pvp: 17280 },                                        // S 11 kW
@@ -65,4 +65,22 @@ window.PRECIOS = {
   'vmoto-tsx': { pvp: 2995 },                                            // TSX
   'vmoto-cu': { pvp: 1795 },                                             // CU
   'vmoto-citi': { pvp: 2995 },                                           // CITI
+  // --- gama completa (13-nov-2026, webs oficiales) ---
+  'zero-srf': { pvp: 21090 }, // gama completa 13-nov (https://www.zeromotorcycles.com/es-es/model/zero-srf)
+  'zero-srf-edicion-20-aniversario': { pvp: 23090 }, // gama completa 13-nov (https://www.zeromotorcycles.com/es-es/model/zero-srf)
+  'zero-dsrx': { pvp: 21600 }, // gama completa 13-nov (https://www.zeromotorcycles.com/es-es/model/zero-dsrx)
+  'zero-dsrx-black-forest': { pvp: 24650 }, // gama completa 13-nov (https://www.zeromotorcycles.com/es-es/model/zero-dsrx)
+  'zero-ls3': { pvp: 6925 }, // gama completa 13-nov (https://www.zeromotorcycles.com/es-es/model/zero-ls3)
+  'niu-fqix-300': { pvp: 2999 }, // gama completa 13-nov (https://global.niu.com/es/product/FQiX-300)
+  'niu-fqix-500-2-baterias': { pvp: 4699 }, // gama completa 13-nov (https://global.niu.com/es/product/FQiX-500)
+  'niu-fqix-500-3-baterias': { pvp: 5548 }, // gama completa 13-nov (https://global.niu.com/es/product/FQiX-500)
+  'niu-fqix-razer-city-scout': { pvp: 2599 }, // gama completa 13-nov (https://global.niu.com/es/product/FQiX-Razer)
+  'niu-fqix-razer-road-warrior': { pvp: 3099 }, // gama completa 13-nov (https://global.niu.com/es/product/FQiX-Razer)
+  'vmoto-citi-2-baterias': { pvp: 3865 }, // gama completa 13-nov (https://vmoto.com/es/models/citi-2)
+  // --- gama completa (13-nov-2026, webs oficiales) ---
+  'silence-s04-customized': { pvp: 8900, conAyudas: 6290, ayudaTxt: 'con Plan Auto+ e IRPF' }, // gama completa 13-nov (https://www.silence.eco/es/s04-customized)
+  'velca-nude-lite-2-baterias': { pvp: 4990 }, // gama completa 13-nov (https://www.velcamotor.com/velca-nude)
+  'next-mojito-powerpack': { pvp: 4399 }, // gama completa 13-nov (https://wearenextmotors.com/products/mojito)
+  'next-nx1-powerpack': { pvp: 2499 }, // gama completa 13-nov (https://wearenextmotors.com/products/nx1)
+  'next-nx-plus-ls-2-baterias': { pvp: 2999 }, // gama completa 13-nov (https://wearenextmotors.com/products/nxplusls)
 };

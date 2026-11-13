@@ -40,12 +40,11 @@
     var enlaces = [
       ['motos', 'Motos'],
       ['nanocars', 'Nanocars'],
-      ['novedades', 'Novedades y reservas'],
       ['comparar', 'Comparar'],
       [raiz + '#carnet', 'Carnets'],
       [raiz + '#contacto', 'Contacto']
     ];
-    var links = enlaces.map(function (e) { return '<a href="' + e[0] + '"' + (e[0] === 'nanocars' ? ' class="nav__nano"' : e[0] === 'novedades' ? ' class="nav__nuevo"' : '') + '>' + e[1] + '</a>'; }).join('');
+    var links = enlaces.map(function (e) { return '<a href="' + e[0] + '"' + (e[0] === 'nanocars' ? ' class="nav__nano"' : '') + '>' + e[1] + '</a>'; }).join('');
     var tiposDe = function (x) { return x.tipos.map(function (t) { return TIPOS[t].n.toLowerCase(); }).join(', '); };
     var marcasDd = MARCAS.map(function (x) {
       return '<a href="' + uMarca(x.slug) + '"><b>' + esc(x.nombre) + '</b><span>' + x.modelos.length + (x.modelos.length === 1 ? ' modelo' : ' modelos') + '</span><em>' + esc(tiposDe(x)) + '</em></a>';
@@ -97,7 +96,6 @@
   function pie() {
     var marcas = MARCAS.map(function (x) { return '<li><a href="' + uMarca(x.slug) + '">' + esc(x.nombre) + '</a></li>'; });
     marcas.push('<li><a href="nanocars">Nanocars</a></li>');
-    marcas.push('<li><a href="novedades">Novedades y reservas</a></li>');
     marcas.push('<li><a href="motos">Todas las motos</a></li>');
     var mitad = Math.ceil(marcas.length / 2);
     var docks = {
@@ -153,10 +151,13 @@
       (mo.conAyudas ? '<p class="pr pr--ay"><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small></p>' : '') + gastosHtml();
   }
   // carnet: «B» = carnet de coche con 3 años o A1 · «AM» = ciclomotor · «Bsolo» = solo carnet de coche
+  //         «A2» y «A» = carnet de moto (13-nov-2026: gama completa de Zero y Ultraviolette)
   var LIC = {
     B: ['lic--b', 'Carnet de coche o A1'],
     AM: ['lic--am', 'Carnet AM · desde los 15'],
-    Bsolo: ['lic--b', 'Carnet de coche']
+    Bsolo: ['lic--b', 'Carnet de coche'],
+    A2: ['lic--a', 'Carnet de moto A2'],
+    A: ['lic--a', 'Carnet de moto A']
   };
   function licHtml(mo) { var l = LIC[mo.lic]; return l ? '<i class="lic ' + l[0] + '">' + l[1] + '</i>' : ''; }
   function potTxt(mo) {
@@ -453,50 +454,6 @@
     }).join('') + '<p class="nhome__nota">*Precio final que publica Silence con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF. ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
   }
 
-  /* ---------- novedades y reservas anticipadas (window.NOVEDADES) ---------- */
-  function paginaNovedades() {
-    var N = window.NOVEDADES; if (!N || !$('#novs')) return;
-    var tot = N.modelos.length;
-    $('#novs').innerHTML = N.modelos.map(function (m, k) {
-      var cols = (m.colores || []).map(function (c, i) {
-        return '<button type="button" class="nv-sw' + (i ? '' : ' on') + '" data-img="' + c.img + '" data-c="' + esc(c.n) + '" aria-label="Ver en ' + esc(c.n) + '" title="' + esc(c.n) + '"><i style="background:' + (c.hex || '#888') + '"></i></button>';
-      }).join('');
-      var pr = m.precio ? m.precio.map(function (p) { return '<span><small>' + esc(p[0]) + '</small><b>' + eur(p[1]) + '</b></span>'; }).join('') : '<span><b class="nv-conf">Precio a confirmar</b></span>';
-      var vis = m.img ? '<img src="' + m.img + '" width="900" height="600" alt="' + esc(m.nombre) + '" loading="lazy">' : '<p class="nv-sinfoto"><i></i>Foto próximamente</p>';
-      return '<article class="nv-moto' + (k % 2 ? ' nv-moto--inv' : '') + '" id="' + m.id + '">' +
-        '<div class="nv-moto__vis' + (m.img ? ' nv-moto__vis--foto' : '') + '"' + (m.img && m.fondo ? ' style="background:' + m.fondo + '"' : '') + '>' +
-          '<span class="nv-moto__idx">' + ('0' + (k + 1)) + '<small>/ 0' + tot + '</small></span>' +
-          '<span class="nv-moto__ghost" aria-hidden="true">' + esc(m.corto) + '</span>' +
-          '<div class="nv-moto__img">' + vis + '</div>' +
-          (cols ? '<div class="nv-sws"><span class="nv-sws__n">' + esc(m.colores[0].n) + '</span>' + cols + '</div>' : '') +
-        '</div>' +
-        '<div class="nv-moto__body">' +
-          '<p class="nv-chip">' + esc(m.etiqueta) + '</p>' +
-          '<h3>' + esc(m.nombre) + '</h3>' +
-          '<p class="nv-moto__frase">' + esc(m.frase) + '</p>' +
-          '<p class="nv-moto__txt">' + esc(m.txt) + '</p>' +
-          '<div class="nv-moto__fila">' +
-            '<div class="nv-pr"><em>' + esc(m.precioNota) + '</em><div>' + pr + '</div></div>' +
-            '<div class="nv-llega"><em>Llegada</em><b>' + esc(m.llegada) + '</b></div>' +
-          '</div>' +
-          '<dl class="nv-datos">' + m.datos.map(function (f) { return '<div><dt>' + esc(f[0]) + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
-          '<a class="nv-btn nv-btn--solid nv-btn--full" href="' + wa(m.wa) + '" target="_blank" rel="noopener">Reservar con ' + eur(N.senal) + '</a>' +
-        '</div></article>';
-    }).join('');
-    $$('.nv-sw').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var card = b.closest('.nv-moto'); var im = card.querySelector('.nv-moto__img img');
-        im.style.opacity = 0; setTimeout(function () { im.src = b.getAttribute('data-img'); im.style.opacity = 1; }, 160);
-        card.querySelector('.nv-sws__n').textContent = b.getAttribute('data-c');
-        $$('.nv-sw', card).forEach(function (o) { o.classList.toggle('on', o === b); });
-      });
-    });
-    if ($('#novAviso') && N.aviso) {
-      var t = N.aviso, i = t.indexOf(':');
-      $('#novAviso').innerHTML = '<i></i><span><b>' + esc(t.slice(0, i)) + '</b>' + esc(t.slice(i + 1)) + '</span>';
-    }
-  }
-
   /* ---------- página de nanocars: el Silence S04, una tarjeta por versión ---------- */
   function paginaNano() {
     var lista = TODOS.filter(function (m) { return m.tipo === 'nano'; });
@@ -631,7 +588,7 @@
       return '<div class="filt__g" data-k="' + k + '">' + ops.map(function (o) { return '<button class="fchip" data-v="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div>';
     };
     $('#filt').innerHTML =
-      '<div class="filt__fila"><span class="filt__et">Carnet</span>' + chips('carnet', [['', 'Cualquiera'], ['B', 'Carnet de coche o A1'], ['AM', 'AM · sin carnet de coche']]) + '</div>' +
+      '<div class="filt__fila"><span class="filt__et">Carnet</span>' + chips('carnet', [['', 'Cualquiera'], ['B', 'Carnet de coche o A1'], ['AM', 'AM · sin carnet de coche'], ['A', 'Carnet de moto (A2 o A)']]) + '</div>' +
       '<div class="filt__fila"><span class="filt__et">Tipo</span>' + chips('tipo', [['', 'Todo']].concat(usados.map(function (t) { return [t, TIPOS[t].n]; }))) + '</div>' +
       '<div class="filt__fila filt__fila--sel">' +
         '<label>Marca<select id="fMarca"><option value="">Todas</option>' + MARCAS.map(function (x) { return '<option value="' + x.slug + '">' + esc(x.nombre) + '</option>'; }).join('') + '</select></label>' +
@@ -643,6 +600,7 @@
       var lista = TODOS.filter(function (mo) {
         if (F.carnet === 'B' && !esB(mo)) return false;
         if (F.carnet === 'AM' && mo.lic !== 'AM') return false;
+        if (F.carnet === 'A' && mo.lic !== 'A2' && mo.lic !== 'A') return false;
         if (F.tipo && mo.tipo !== F.tipo) return false;
         if (F.marca && mo.marca.slug !== F.marca) return false;
         if (F.ext && !mo.extraible) return false;
@@ -689,7 +647,7 @@
     var mo = porId(document.body.getAttribute('data-id') || new URLSearchParams(location.search).get('id'));
     if (!mo) { location.replace('motos'); return; }
     var x = mo.marca, nombre = nombreModelo(x, mo), t = TIPOS[mo.tipo];
-    if (!document.body.getAttribute('data-id')) document.title = nombre + ' · ' + (esB(mo) ? 'con carnet de coche' : 'con carnet AM') + ' · Motovatio';
+    if (!document.body.getAttribute('data-id')) document.title = nombre + ' · ' + (esB(mo) ? 'con carnet de coche' : (mo.lic === 'AM' ? 'con carnet AM' : 'carnet de moto ' + mo.lic)) + ' · Motovatio';
     var back = $('#fBack'); back.href = '' + uMarca(x.slug); back.textContent = 'Todas las ' + x.nombre;
     $('#fTags').innerHTML = '<span class="tag tag--green">' + esc(x.nombre) + '</span><span class="tag">' + t.corto + '</span>' +
       (mo.version ? '<span class="tag">' + esc(mo.version) + '</span>' : '') + (mo.extraible ? '<span class="tag">Batería extraíble</span>' : '');
@@ -793,7 +751,6 @@
   if (pagina === 'home') { cuentaPrecio(); marquesina(); marcas(); destacadas(); nanoPortada(); frente125(); calculadora(); contacto(); }
   if (pagina === 'marca') paginaMarca();
   if (pagina === 'nano') { paginaNano(); contacto(); }
-  if (pagina === 'novedades') { paginaNovedades(); contacto(); }
   if (pagina === 'motos') paginaMotos();
   if (pagina === 'moto') paginaMoto();
   if (pagina === 'comparar') paginaComparar();
