@@ -708,3 +708,6 @@ a.cmpbtn::before{display:none}
 .wa-float:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
 @media(min-width:860px){.wa-float{right:24px;bottom:24px;width:auto;height:56px;padding:0 20px 0 16px}.wa-float span{display:inline}}
 @media(prefers-reduced-motion:reduce){.wa-float{transition:none}.wa-float:hover{transform:none}}
+
+.foot__firma{flex-basis:100%}
+.foot__firma a{color:#fff;text-decoration:underline;text-underline-offset:3px}
