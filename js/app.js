@@ -706,7 +706,10 @@
     $('#fWa').href = wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.');
     $('#fWa').target = '_blank'; $('#fWa').rel = 'noopener';
     $('#fPrueba').href = 'tel:+' + M.tel;
-    $('#fVis').innerHTML = '<figure class="bfoto"><img src="' + mo.img + '" width="900" height="675" alt="' + esc(nombre) + '"></figure>';
+    var REPE = {'silence-s04-l6e-vivo':'silence-s04-l6e','silence-s04-l7e-plus':'silence-s04-l6e','silence-s04-customized':'silence-s04-l6e','velca-nude-lite-2-baterias':'velca-nude-lite','velca-boraplus-2-baterias':'velca-boraplus','niu-fqix-500-2-baterias':'niu-fqix-300','niu-fqix-500-3-baterias':'niu-fqix-300','niu-fqix-razer-road-warrior':'niu-fqix-razer-city-scout'};
+    // Foto de estudio con el logo de Motovatio (15-nov); si una moto nueva aún no la tiene, la de siempre
+    var est = 'img/estudio/' + (REPE[mo.id] || mo.id) + '.webp';
+    $('#fVis').innerHTML = '<figure class="bfoto bfoto--estudio"><img src="' + est + '" width="1080" height="1350" alt="' + esc(nombre) + '" onerror="this.onerror=null;this.src=\'' + mo.img + '\';this.width=900;this.height=675;this.parentNode.className=\'bfoto\'"></figure>';
     $('#fAyudas').hidden = !mo.conAyudas;
 
     var stats = [];
