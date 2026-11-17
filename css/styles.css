@@ -812,3 +812,29 @@ a.cmpbtn::before{display:none}
 /* 14-nov: la etiqueta «Nuevo» gana a la raya del hover del menú */
 .nav__links a.nav__nuevo::after,.menu a.nav__nuevo::after{content:"Nuevo";position:static;display:inline-block;height:auto;transform:none;transition:none;margin-left:6px;padding:2px 6px;border-radius:999px;background:var(--green);color:#fff;font:700 .58rem var(--font-t);letter-spacing:.06em;text-transform:uppercase;vertical-align:.12em}
 .nav__links a.nav__nuevo{white-space:nowrap}
+
+/* 17-nov-2026: dos precios igual de grandes, «Precio PVP» (oscuro, sin tachar) y «Con ayudas e IRPF» (verde) */
+.p2{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 18px;flex-basis:100%}
+.p2__f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.p2__l{font:700 .64rem/1.2 var(--font-t);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.p2__f--ay .p2__l{color:#04793A}
+.p2 .p2__f b{white-space:nowrap}
+.p2 .p2__f:first-child b{color:var(--ink);font-style:normal}
+.p2 .p2__f--ay b{color:var(--green)}
+.pr--2 .p2 b{font:800 1.9rem/1 var(--font-t);letter-spacing:-.03em}
+.pr--2 .p2__f--ay b{font-style:italic}
+.macc__pr .p2{justify-content:flex-end;gap:2px 14px}
+.macc__pr .p2__f{align-items:flex-end}
+.fprecio .p2{gap:8px 26px}
+.fprecio .p2 b{font-size:clamp(2.1rem,8vw,3rem)}
+.fprecio .p2__l{color:#93A4C2}
+.fprecio .p2__f--ay .p2__l{color:#19D46E}
+.fprecio .p2 .p2__f:first-child b{color:#fff}
+.nano__pr .p2 b{font-size:2rem}
+.cartel__pr .p2{gap:4px 22px}
+.fprecio .p2 .p2__f--ay b{color:#19D46E}
+/* sin ayudas: el PVP en oscuro (el verde es solo para el precio con ayudas) */
+b.pvp{color:var(--ink)!important;font-style:normal!important}
+.fprecio b.pvp{color:#fff!important}
+/* 17-nov (Darío): el PVP tachado, pero igual de grande y en oscuro, no en gris */
+.p2 .p2__f:first-child b{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#E5484D}

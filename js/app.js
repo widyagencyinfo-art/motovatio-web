@@ -146,11 +146,13 @@
   function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+$)/g, '.') + ' €'; }
   function cv(kw) { return Math.round(kw * 1.36); }
   function gastosTxt() { return GASTOS ? '+ ' + eur(GASTOS.eur) + ' de ' + GASTOS.txt : ''; }
+  // 17-nov-2026 (Darío): los dos precios igual de grandes: «Antes de ayudas» (oscuro, sin tachar) y «Con ayudas e IRPF» (verde)
+  function dosPrecios(mo) { return '<span class="p2"><span class="p2__f"><span class="p2__l">Precio PVP</span><b>' + eur(mo.pvp) + '</b></span><span class="p2__f p2__f--ay"><span class="p2__l">Con ayudas e IRPF*</span><b>' + eur(mo.conAyudas) + '</b></span></span>'; }
   function gastosHtml() { return GASTOS ? '<p class="gastos">' + esc(gastosTxt()) + '</p>' : ''; }
   function precioHtml(mo) {
     if (!mo.pvp) return '<p class="pr pr--c"><b>Precio a consultar</b></p>';
-    return '<p class="pr"><small>Precio guía</small><b' + (mo.conAyudas ? ' class="pr__antes"' : '') + '>' + eur(mo.pvp) + '</b></p>' +
-      (mo.conAyudas ? '<p class="pr pr--ay"><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small></p>' : '') + gastosHtml();
+    if (mo.conAyudas) return '<div class="pr pr--2">' + dosPrecios(mo) + '</div>' + gastosHtml();
+    return '<p class="pr"><small>Precio PVP</small><b>' + eur(mo.pvp) + '</b></p>' + gastosHtml();
   }
   // carnet: «B» = carnet de coche con 3 años o A1 · «AM» = ciclomotor · «Bsolo» = solo carnet de coche
   //         «A2» y «A» = carnet de moto (13-nov-2026: gama completa de Zero y Ultraviolette)
@@ -211,7 +213,7 @@
         (mo.img ? '<img class="macc__th" src="' + mo.img + '" width="900" height="675" alt="" loading="lazy">' : '<span class="macc__th"></span>') +
         '<span class="macc__name">' + esc(mo.n) + (mo.version ? ' <small>' + esc(mo.version) + '</small>' : '') + '</span>' +
         '<span class="macc__res">' + licHtml(mo) + '<b>' + (t ? t.corto : 'Eléctrica') + (mo.extraible ? ' · batería extraíble' : '') + '</b>' + (mo.destacado ? esc(mo.destacado) : '') + '</span>' +
-        '<span class="macc__pr">' + (mo.pvp ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b>' : '<small>desde</small><b>' + eur(mo.pvp) + '</b>') : '<small>precio</small><b class="macc__c">a consultar</b>') + '</span>' +
+        '<span class="macc__pr">' + (mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '<small>precio</small><b class="macc__c">a consultar</b>') + '</span>' +
         '<span class="acc__ico" aria-hidden="true"></span>' +
       '</summary>' +
       '<div class="macc__body">' + fichaModelo(x, mo) + '</div>' +
@@ -308,7 +310,7 @@
           '<h3><a href="' + uMoto(mo.id) + '">' + esc(mo.n) + '</a></h3>' +
           licHtml(mo) +
           '<p class="prod__dest">' + esc(mo.destacado) + '</p>' +
-          '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
+          '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
           '<a class="btn btn--navy" href="' + wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
         '</div></article>';
     }).join('');
@@ -453,7 +455,7 @@
         licHtml(mo) +
         '<span class="nver__p">' + (pr ? 'Desde ' + eur(pr) + (mo.conAyudas ? '*' : '') : 'Precio a consultar') + '</span>' +
       '</a>';
-    }).join('') + '<p class="nhome__nota">*Precio final que publica Silence con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF. ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
+    }).join('') + '<p class="nhome__nota">*Precio final estimado con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF (compras hasta el 31-12-2026). ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
   }
 
   /* ---------- novedades y reservas anticipadas (window.NOVEDADES) ---------- */
@@ -519,7 +521,7 @@
         '<h3><a href="' + uMoto(mo.id) + '">' + esc(mo.titular || mo.n) + '</a></h3>' +
         licHtml(mo) +
         '<p class="nano__d">' + esc(mo.destacado) + '</p>' +
-        '<div class="nano__pr">' + (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : (mo.pvp ? '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>' : '<b class="prod__c">Precio a consultar</b>')) + gastosHtml() + '</div>' +
+        '<div class="nano__pr">' + (mo.conAyudas ? dosPrecios(mo) : (mo.pvp ? '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>' : '<b class="prod__c">Precio a consultar</b>')) + gastosHtml() + '</div>' +
         '<dl class="nano__datos">' + filas.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
         '<p class="nano__carnet"><b>Carnet:</b> ' + esc(mo.carnet) + '</p>' +
         '<a class="btn btn--green" href="' + wa('Hola, quiero más información sobre el ' + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
@@ -548,7 +550,7 @@
           '<div class="cartel__mid">' +
             '<div class="cartel__nom"><p>' + esc(x.nombre) + '</p><h2>' + esc(mo.n) + '</h2>' + (mo.version ? '<small>' + esc(mo.version) + '</small>' : '') + '</div>' +
             '<div class="cartel__pr">' + (mo.pvp
-              ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>*' + esc(mo.ayudaTxt) + '</small>' : '<b>' + eur(mo.pvp) + '</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '')
+              ? (mo.conAyudas ? dosPrecios(mo) : '<b>' + eur(mo.pvp) + '</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '')
               : '<b class="cartel__c">Pregunta el precio</b>') + '</div>' +
           '</div>' +
           (l ? '<p class="cartel__lic">' + l[1] + '</p>' : '') +
@@ -617,7 +619,7 @@
         '<h3><a href="' + uMoto(mo.id) + '">' + esc(mo.n) + (mo.version ? ' <small>' + esc(mo.version) + '</small>' : '') + '</a></h3>' +
         licHtml(mo) +
         '<ul class="mcard__nums">' + numeros(mo).map(function (n) { return '<li><b>' + n[0] + '</b>' + n[1] + '</li>'; }).join('') + '</ul>' +
-        '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b>' : '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
+        '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
         '<div class="mcard__cta"><a class="btn btn--navy" href="' + uMoto(mo.id) + '">Ver ficha</a>' +
           (extra || '<button class="cmpbtn" data-cmp="' + mo.id + '" aria-pressed="false">Comparar</button>') + '</div>' +
       '</div></article>';
@@ -701,7 +703,7 @@
     $('#fFrase').textContent = mo.destacado || '';
     $('#fLic').innerHTML = licHtml(mo);
     $('#fPrecio').innerHTML = (mo.pvp
-      ? (mo.conAyudas ? '<s>' + eur(mo.pvp) + '</s><b>' + eur(mo.conAyudas) + '*</b><small>' + esc(mo.ayudaTxt) + '</small>' : '<small>Precio guía</small><b>' + eur(mo.pvp) + '</b>')
+      ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>')
       : '<b class="fprecio__c">Precio a consultar</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '');
     $('#fWa').href = wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.');
     $('#fWa').target = '_blank'; $('#fWa').rel = 'noopener';
@@ -760,7 +762,8 @@
       // cada fila: etiqueta, texto de cada moto y, si se puede medir, cuál gana
       var bat = function (mo) { var m = /^([\d,]+) kWh/.exec(mo.bat || ''); return m ? parseFloat(m[1].replace(',', '.')) : 0; };
       var filas = [
-        ['Precio', function (mo) { return mo.pvp ? (mo.conAyudas ? eur(mo.conAyudas) + '*' : eur(mo.pvp)) : 'A consultar'; }, function (mo) { return precioDe(mo) ? -precioDe(mo) : null; }],
+        ['Precio PVP', function (mo) { return mo.pvp ? eur(mo.pvp) : 'A consultar'; }],
+        ['Con ayudas e IRPF', function (mo) { return mo.conAyudas ? eur(mo.conAyudas) + '*' : (mo.pvp ? 'Sin ayudas' : '—'); }, function (mo) { return precioDe(mo) ? -precioDe(mo) : null; }],
         ['Carnet', function (mo) { return LIC[mo.lic][1]; }],
         ['Tipo', function (mo) { return TIPOS[mo.tipo].corto; }],
         ['Velocidad', function (mo) { return mo.vmax ? mo.vmax + ' km/h' : '—'; }, function (mo) { return mo.vmax || null; }],
