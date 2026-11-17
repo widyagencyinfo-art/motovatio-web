@@ -471,7 +471,7 @@
         licHtml(mo) +
         '<span class="nver__p">' + (pr ? 'Desde ' + eur(pr) + (mo.conAyudas ? '*' : '') : 'Precio a consultar') + '</span>' +
       '</a>';
-    }).join('') + '<p class="nhome__nota">*Precio final estimado con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF (compras hasta el 31-12-2026). ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
+    }).join('') + '<p class="nhome__nota">*Precio final estimado con el Plan Auto+ (sujeto a fondos) y la deducción del 15 % en el IRPF (compras hasta el 31-12-2026). En la compra se paga el PVP; las ayudas se cobran después: el Plan Auto+ llega en menos de un año y el IRPF se recupera en la renta. ' + (GASTOS ? 'Se suman ' + eur(GASTOS.eur) + ' de ' + esc(GASTOS.txt) + '.' : '') + '</p>';
   }
 
   /* ---------- novedades y reservas anticipadas (window.NOVEDADES) ---------- */
