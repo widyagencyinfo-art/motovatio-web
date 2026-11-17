@@ -485,7 +485,7 @@
             '<div class="nv-llega"><em>Llegada</em><b>' + esc(m.llegada) + '</b></div>' +
           '</div>' +
           '<dl class="nv-datos">' + m.datos.map(function (f) { return '<div><dt>' + esc(f[0]) + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
-          '<a class="nv-btn nv-btn--solid nv-btn--full" href="' + wa(m.wa) + '" target="_blank" rel="noopener">Reservar con ' + eur(N.senal) + '</a>' +
+          '<a class="nv-btn nv-btn--solid nv-btn--full" href="' + uReserva(m.id) + '">Reservar con ' + eur(N.senal) + '</a>' +
         '</div></article>';
     }).join('');
     $$('.nv-sw').forEach(function (b) {
@@ -691,6 +691,57 @@
   }
 
   /* ---------- ficha de una moto: dirección propia para mandarla por WhatsApp o ponerla en un anuncio ---------- */
+
+  /* ---------- RESERVAS (17-nov-2026): 300 € las motos del catálogo, 500 € las de Novedades ---------- */
+  function reservaDe(id) {
+    var R = window.RESERVAS || { moto: { eur: 300, stripe: '' }, novedad: { eur: 500, stripe: '' } };
+    var mo = porId(id);
+    if (mo) return { id: mo.id, nombre: mo.marca.nombre + ' ' + mo.n + (mo.version ? ' ' + mo.version : ''), img: mo.img, ficha: uMoto(mo.id), eur: R.moto.eur, stripe: R.moto.stripe, tipo: 'moto', precio: mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '' };
+    var N = window.NOVEDADES, nv = N && N.modelos.filter(function (m) { return m.id === id; })[0];
+    if (nv) return { id: nv.id, nombre: nv.nombre, img: nv.img, ficha: 'novedades#' + nv.id, eur: R.novedad.eur, stripe: R.novedad.stripe, tipo: 'novedad', llegada: nv.llegada, precio: nv.precio ? nv.precio.map(function (p) { return '<small>' + esc(p[0]) + '</small><b class="pvp">' + eur(p[1]) + '</b>'; }).join(' ') : '' };
+    return null;
+  }
+  function uReserva(id) { return 'reservar?m=' + encodeURIComponent(id); }
+  function paginaReservar() {
+    var r = reservaDe(new URLSearchParams(location.search).get('m') || ''), box = $('#resIn');
+    if (!r) { box.innerHTML = '<div class="res__vacio"><h1>Elige la moto que quieres reservar</h1><p>Entra en la ficha de la moto y pulsa «Reservar».</p><a class="btn btn--green" href="motos">Ver todas las motos</a></div>'; return; }
+    document.title = 'Reservar ' + r.nombre + ' · Motovatio';
+    var nov = r.tipo === 'novedad';
+    var cond = [
+      'Pagas <b>' + eur(r.eur) + '</b> y apartamos ' + (nov ? 'una unidad de la ' : 'la ') + '<b>' + esc(r.nombre) + '</b> a tu nombre.',
+      'Los ' + eur(r.eur) + ' <b>se descuentan del precio final</b> cuando la compras.',
+      'Si decides no comprarla, <b>la reserva no se devuelve</b>.',
+      'Como pagas a distancia, tienes <b>14 días</b> desde el pago para echarte atrás y te la devolvemos entera (derecho de desistimiento).',
+      'Si por nuestra parte no podemos entregártela, te devolvemos la reserva entera.',
+      nov ? 'Precio y fecha de llegada (' + esc(r.llegada || 'a confirmar') + ') son los que nos ha pasado el fabricante y pueden cambiar; te avisamos en cuanto llegue.' : 'Después del pago, Jorge te llama en horario de tienda para confirmar color, plazo de entrega y el precio final con las ayudas que te correspondan.'
+    ];
+    var pagar = r.stripe
+      ? '<a class="btn btn--green btn--block res__pagar" id="resPagar" href="' + r.stripe + '?client_reference_id=' + encodeURIComponent(r.id) + '" aria-disabled="true">Pagar la reserva de ' + eur(r.eur) + '</a><p class="res__seguro">Pago seguro con tarjeta, Apple Pay o Google Pay (Stripe). No guardamos los datos de tu tarjeta.</p>'
+      : '<a class="btn btn--green btn--block res__pagar" id="resPagar" target="_blank" rel="noopener" href="' + wa('Hola, quiero reservar ' + (nov ? 'una unidad de la ' : 'la ') + r.nombre + ' con ' + eur(r.eur) + '. He leído las condiciones de la reserva. ¿Cómo lo pago?') + '" aria-disabled="true">Reservar por ' + eur(r.eur) + '</a><p class="res__seguro">Te escribimos por WhatsApp para hacer el pago y te mandamos el justificante.</p>';
+    box.innerHTML =
+      '<a class="back" href="' + r.ficha + '">Volver a la ficha</a>' +
+      '<div class="res__grid">' +
+        '<div class="res__moto">' + (r.img ? '<img src="' + r.img + '" alt="' + esc(r.nombre) + '" width="900" height="675">' : '') +
+          '<p class="res__chip">' + (nov ? 'Reserva anticipada' : 'Reserva') + '</p><h1>' + esc(r.nombre) + '</h1>' +
+          (r.precio ? '<div class="res__precio">' + r.precio + '</div>' : '') + '</div>' +
+        '<div class="res__caja">' +
+          '<p class="res__eye">Reserva</p><p class="res__eur">' + eur(r.eur) + '</p>' +
+          '<h2>Condiciones de la reserva</h2><ul class="res__cond">' + cond.map(function (c) { return '<li>' + c + '</li>'; }).join('') + '</ul>' +
+          '<label class="res__ok"><input type="checkbox" id="resAcepto"><span>He leído y acepto las condiciones de la reserva y la <a href="privacidad" target="_blank">política de privacidad</a>.</span></label>' +
+          pagar +
+          '<p class="res__dudas">¿Dudas antes de pagar? <a href="' + wa('Hola, tengo una duda antes de reservar la ' + r.nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>.</p>' +
+        '</div>' +
+      '</div>';
+    var ok = $('#resAcepto'), btn = $('#resPagar');
+    btn.addEventListener('click', function (e) { if (!ok.checked) { e.preventDefault(); ok.closest('label').classList.add('res__ok--err'); ok.focus(); } });
+    ok.addEventListener('change', function () { btn.setAttribute('aria-disabled', ok.checked ? 'false' : 'true'); ok.closest('label').classList.remove('res__ok--err'); });
+  }
+  function paginaReservaOk() {
+    var box = $('#resOk');
+    box.innerHTML = '<div class="res__vacio res__vacio--ok"><p class="res__chip">Reserva recibida</p><h1>¡Hecho! Tu moto está reservada.</h1>' +
+      '<p>Te llega el justificante del pago a tu correo. Jorge te llama en horario de tienda para confirmar color, plazo de entrega y el precio final.</p>' +
+      '<a class="btn btn--green" target="_blank" rel="noopener" href="' + wa('Hola, acabo de pagar la reserva de una moto en la web.') + '">Escribirnos por WhatsApp</a></div>';
+  }
   function paginaMoto() {
     var mo = porId(document.body.getAttribute('data-id') || new URLSearchParams(location.search).get('id'));
     if (!mo) { location.replace('motos'); return; }
@@ -707,6 +758,7 @@
       : '<b class="fprecio__c">Precio a consultar</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '');
     $('#fWa').href = wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.');
     $('#fWa').target = '_blank'; $('#fWa').rel = 'noopener';
+    if ($('#fRes')) { var rr = reservaDe(mo.id); $('#fRes').href = uReserva(mo.id); $('#fRes').textContent = 'Reservar por ' + eur(rr.eur); }
     $('#fPrueba').href = 'tel:+' + M.tel;
     var REPE = {'silence-s04-l6e-vivo':'silence-s04-l6e','silence-s04-l7e-plus':'silence-s04-l6e','silence-s04-customized':'silence-s04-l6e','velca-nude-lite-2-baterias':'velca-nude-lite','velca-boraplus-2-baterias':'velca-boraplus','niu-fqix-500-2-baterias':'niu-fqix-300','niu-fqix-500-3-baterias':'niu-fqix-300','niu-fqix-razer-road-warrior':'niu-fqix-razer-city-scout'};
     // Foto de estudio con el logo de Motovatio (15-nov); si una moto nueva aún no la tiene, la de siempre
@@ -807,6 +859,8 @@
   if (pagina === 'motos') paginaMotos();
   if (pagina === 'moto') paginaMoto();
   if (pagina === 'comparar') paginaComparar();
+  if (pagina === 'reservar') paginaReservar();
+  if (pagina === 'reserva-ok') paginaReservaOk();
   enlacesWa();
   aparicion();
 })();
