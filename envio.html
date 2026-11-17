@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Envío a domicilio de motos eléctricas · Motovatio</title>
+<link rel="canonical" href="https://motovatio.com/envio">
+<meta name="description" content="Te llevamos tu moto eléctrica a casa, a cualquier punto de España. Consulta el precio del envío con tu código postal.">
+<link rel="icon" href="img/icono.svg" type="image/svg+xml">
+<link rel="alternate icon" href="img/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=20261117n">
+</head>
+<body data-page="envio">
+
+<div id="siteHeader"></div>
+
+<main>
+  <section class="nv-hero sv-hero">
+    <div class="nv-hero__glow"></div>
+    <div class="wrap nv-hero__in">
+      <div class="nv-hero__txt">
+        <p class="nv-kicker"><i></i>Envío a domicilio</p>
+        <h1>¿Necesitas que te la <em>llevemos a casa?</em></h1>
+        <p class="nv-hero__p">Te llevamos la moto a cualquier punto de España. Dinos tu código postal y te decimos cuánto cuesta el envío a tu casa.</p>
+        <ul class="nv-hero__stats">
+          <li><b>España</b><span>envíos a domicilio</span></li>
+          <li><b id="eMarcas">8</b><span>marcas</span></li>
+          <li><b id="eModelos"></b><span>modelos</span></li>
+        </ul>
+      </div>
+      <form class="sv-form" id="fEnvio" novalidate>
+        <h2>Consulta el precio del envío</h2>
+        <p class="sv-form__p">De momento el precio se consulta por código postal. Te contestamos por WhatsApp.</p>
+        <label class="sv-f"><span>Tu código postal</span><input id="eCp" name="cp" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="Ej.: 41701" required></label>
+        <label class="sv-f"><span>La moto que te interesa <em>(opcional)</em></span><select id="eMoto" name="moto"><option value="">Aún no lo sé</option></select></label>
+        <p class="sv-err" id="eErr" hidden>Pon un código postal de 5 números.</p>
+        <button class="nv-btn nv-btn--solid nv-btn--full" type="submit">Consultar precio por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="nv-sec nv-sec--como">
+    <div class="wrap">
+      <div class="nv-head">
+        <p class="nv-eyebrow">Cómo funciona</p>
+        <h2>Tu moto, <em>en la puerta de casa.</em></h2>
+      </div>
+      <div class="nv-steps sv-steps3">
+        <article><span>01</span><h3>Eliges la moto</h3><p>Mira las motos de la web o pregúntanos cuál te encaja según tus kilómetros y tu carnet.</p></article>
+        <article><span>02</span><h3>Nos das tu código postal</h3><p>Te decimos lo que cuesta el envío a tu casa antes de que decidas nada.</p></article>
+        <article><span>03</span><h3>Te la llevamos</h3><p>Cerramos la compra y te la llevamos a tu domicilio.</p></article>
+      </div>
+      <p class="nv-note">El precio del envío depende de dónde vivas y se suma al de la moto. Si estás cerca de la tienda, también puedes venir a verla.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="contacto">
+    <div class="wrap contact">
+      <div class="contact__txt">
+        <p class="eyebrow">Dónde estamos</p>
+        <h2>Pásate a vernos.</h2>
+        <ul class="contact__list">
+          <li><span>Dirección</span><b id="cDir"></b></li>
+          <li><span>Horario</span><b id="cHor"></b></li>
+          <li><span>Teléfono y WhatsApp</span><b id="cTel"></b></li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn btn--wa" data-wa="Hola, te escribo desde la web">Escribir por WhatsApp</a>
+          <a class="btn btn--line" id="cCall">Llamar</a>
+        </div>
+      </div>
+      <div class="contact__map"><iframe id="cMap" title="Mapa de Motovatio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+<script src="js/data.js?v=20261117n"></script>
+<script src="js/precios.js?v=20261117n"></script>
+<script src="js/app.js?v=20261117n"></script>
+</body>
+</html>

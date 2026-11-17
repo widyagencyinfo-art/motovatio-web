@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller y revisiones de motos eléctricas · Motovatio</title>
+<link rel="canonical" href="https://motovatio.com/taller">
+<meta name="description" content="Taller de motos eléctricas de todas las marcas: revisiones, averías y recambios con cita previa. Revisión 48,40 € con IVA y moto de sustitución.">
+<link rel="icon" href="img/icono.svg" type="image/svg+xml">
+<link rel="alternate icon" href="img/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=20261117n">
+</head>
+<body data-page="taller">
+
+<div id="siteHeader"></div>
+
+<main>
+  <section class="nv-hero sv-hero">
+    <div class="nv-hero__glow"></div>
+    <div class="wrap nv-hero__in">
+      <div class="nv-hero__txt">
+        <p class="nv-kicker"><i></i>Taller y revisiones</p>
+        <h1>Pide cita en <em>nuestro taller.</em></h1>
+        <p class="nv-hero__p">Servicio técnico de todas las marcas, en la misma tienda. Revisiones, averías y recambios, con cita previa.</p>
+        <ul class="nv-hero__stats">
+          <li><b>48,40 €</b><span>revisión, IVA incluido</span></li>
+          <li><b>1 día</b><span>normalmente</span></li>
+          <li><b>Sí</b><span>moto de sustitución</span></li>
+        </ul>
+      </div>
+      <form class="sv-form" id="fTaller" novalidate>
+        <h2>Pide tu cita</h2>
+        <p class="sv-form__p">Rellénalo y te confirmamos el día por WhatsApp.</p>
+        <label class="sv-f"><span>Tu nombre</span><input id="tNom" name="nombre" autocomplete="name" placeholder="Nombre" required></label>
+        <label class="sv-f"><span>Tu moto (marca y modelo)</span><input id="tMoto" name="moto" placeholder="Ej.: Silence S01" required></label>
+        <label class="sv-f"><span>¿Qué necesitas?</span><select id="tQue" name="que"><option>Revisión</option><option>Avería</option><option>Neumáticos o frenos</option><option>Recambio</option><option>Otra cosa</option></select></label>
+        <label class="sv-f"><span>Día que te viene bien <em>(opcional)</em></span><input id="tDia" name="dia" type="date"></label>
+        <label class="sv-f"><span>Cuéntanos algo más <em>(opcional)</em></span><textarea id="tNota" name="nota" rows="2" placeholder="Ej.: hace un ruido al frenar"></textarea></label>
+        <p class="sv-err" id="tErr" hidden>Pon tu nombre y tu moto.</p>
+        <button class="nv-btn nv-btn--solid nv-btn--full" type="submit">Pedir cita por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="nv-sec nv-sec--como">
+    <div class="wrap">
+      <div class="nv-head">
+        <p class="nv-eyebrow">Cómo trabajamos</p>
+        <h2>Tu moto, <em>en buenas manos.</em></h2>
+      </div>
+      <div class="nv-steps">
+        <article><span>01</span><h3>Pides cita</h3><p>Por aquí, por WhatsApp o por teléfono. Las revisiones se hacen con cita previa.</p></article>
+        <article><span>02</span><h3>Nos la traes</h3><p>Nos traes la moto a la tienda. Si la necesitas, tenemos moto de sustitución.</p></article>
+        <article><span>03</span><h3>Te avisamos antes</h3><p>La revisión es una hora de mano de obra: 48,40 € con IVA. Si hay que cambiar alguna pieza, te avisamos siempre antes.</p></article>
+        <article><span>04</span><h3>La recoges</h3><p>Normalmente la dejas un día y la recoges al siguiente, si no sale ningún problema.</p></article>
+      </div>
+      <p class="nv-note">Tenemos recambios de todas las marcas que vendemos: cualquier pieza te la pedimos nosotros. No recogemos la moto a domicilio para el taller.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="contacto">
+    <div class="wrap contact">
+      <div class="contact__txt">
+        <p class="eyebrow">Dónde estamos</p>
+        <h2>Pásate a vernos.</h2>
+        <ul class="contact__list">
+          <li><span>Dirección</span><b id="cDir"></b></li>
+          <li><span>Horario</span><b id="cHor"></b></li>
+          <li><span>Teléfono y WhatsApp</span><b id="cTel"></b></li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn btn--wa" data-wa="Hola, te escribo desde la web">Escribir por WhatsApp</a>
+          <a class="btn btn--line" id="cCall">Llamar</a>
+        </div>
+      </div>
+      <div class="contact__map"><iframe id="cMap" title="Mapa de Motovatio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+<script src="js/data.js?v=20261117n"></script>
+<script src="js/precios.js?v=20261117n"></script>
+<script src="js/app.js?v=20261117n"></script>
+</body>
+</html>

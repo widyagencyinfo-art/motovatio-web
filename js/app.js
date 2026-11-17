@@ -42,6 +42,8 @@
       ['nanocars', 'Nanocars'],
       ['novedades', 'Novedades'],
       ['comparar', 'Comparar'],
+      ['envio', 'Envío'],
+      ['taller', 'Taller'],
       [raiz + '#carnet', 'Carnets'],
       [raiz + '#contacto', 'Contacto']
     ];
@@ -99,6 +101,8 @@
     marcas.push('<li><a href="nanocars">Nanocars</a></li>');
     marcas.push('<li><a href="motos">Todas las motos</a></li>');
     marcas.push('<li><a href="novedades">Novedades y reservas</a></li>');
+    marcas.push('<li><a href="envio">Envío a domicilio</a></li>');
+    marcas.push('<li><a href="taller">Taller y cita</a></li>');
     var mitad = Math.ceil(marcas.length / 2);
     var docks = {
       home: ['Hola, te escribo desde la web', 'Pregúntanos por WhatsApp'],
@@ -875,6 +879,42 @@
     pinta();
   }
 
+  /* ---------- ENVÍO y TALLER (17-nov-2026, Jorge): formularios que abren WhatsApp con el mensaje escrito ---------- */
+  function abrirWa(texto) { var w = window.open(wa(texto), '_blank', 'noopener'); if (!w) location.href = wa(texto); }
+  function paginaEnvio() {
+    var sel = $('#eMoto');
+    MARCAS.forEach(function (x) {
+      var g = document.createElement('optgroup'); g.label = x.nombre;
+      x.modelos.forEach(function (mo) { var o = document.createElement('option'); o.value = mo.id; o.textContent = nombreModelo(x, mo); g.appendChild(o); });
+      sel.appendChild(g);
+    });
+    var pre = new URLSearchParams(location.search).get('moto');
+    if (pre && porId(pre)) sel.value = pre;
+    if ($('#eMarcas')) $('#eMarcas').textContent = MARCAS.length;
+    if ($('#eModelos')) $('#eModelos').textContent = TODOS.length;
+    $('#fEnvio').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var cp = $('#eCp').value.replace(/\D/g, '');
+      $('#eErr').hidden = cp.length === 5;
+      if (cp.length !== 5) { $('#eCp').focus(); return; }
+      abrirWa('Hola, quiero saber cuánto cuesta el envío a domicilio al código postal ' + cp + (porId(sel.value) ? (porId(sel.value).tipo === 'nano' ? ' del ' : ' de la ') + nombreModelo(porId(sel.value).marca, porId(sel.value)) : '') + '.');
+    });
+  }
+  function paginaTaller() {
+    var d = $('#tDia'), hoy = new Date(); hoy.setDate(hoy.getDate() + 1);
+    d.min = hoy.toISOString().slice(0, 10);
+    $('#fTaller').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nom = $('#tNom').value.trim(), moto = $('#tMoto').value.trim();
+      $('#tErr').hidden = !!(nom && moto);
+      if (!nom || !moto) { (nom ? $('#tMoto') : $('#tNom')).focus(); return; }
+      var dia = '';
+      if (d.value) { var p = d.value.split('-'); var f = new Date(+p[0], +p[1] - 1, +p[2]); dia = f.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }); }
+      var nota = $('#tNota').value.trim();
+      abrirWa('Hola, soy ' + nom + ' y quiero pedir cita para el taller. Moto: ' + moto + '. Necesito: ' + $('#tQue').value.toLowerCase() + '.' + (dia ? ' Me vendría bien el ' + dia + '.' : '') + (nota ? ' Te cuento: ' + nota : ''));
+    });
+  }
+
   if (pagina === 'carteles') { paginaCarteles(); return; }
   cabecera();
   pie();
@@ -887,6 +927,8 @@
   if (pagina === 'comparar') paginaComparar();
   if (pagina === 'reservar') paginaReservar();
   if (pagina === 'reserva-ok') paginaReservaOk();
+  if (pagina === 'envio') { paginaEnvio(); contacto(); }
+  if (pagina === 'taller') { paginaTaller(); contacto(); }
   enlacesWa();
   aparicion();
 })();
