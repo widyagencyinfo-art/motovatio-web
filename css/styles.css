@@ -941,3 +941,5 @@ body[data-page="reservar"] .res{background:var(--soft);padding:18px 0 48px}
 .mx__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .mx__video figcaption{margin-top:10px;font-size:.8rem;color:#93A4C2}
 @media (min-width:900px){.mx__in{grid-template-columns:1fr 1.1fr;gap:48px}.mx__puntos{grid-template-columns:1fr 1fr}}
+
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
