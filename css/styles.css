@@ -975,3 +975,19 @@ body[data-page="reservar"] .res{background:var(--soft);padding:18px 0 48px}
 .sv-f input:focus,.sv-f select:focus,.sv-f textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(25,212,110,.18)}
 .sv-err{margin:0;color:#c62828;font-size:.88rem;font-weight:600}
 @media(min-width:900px){.sv-steps3{grid-template-columns:repeat(3,1fr)}}
+/* ---------- portada: bloque TALLER (17-nov-2026) ---------- */
+.tal__in{display:grid;gap:clamp(28px,5vw,64px);align-items:center}
+.tal__img{border-radius:26px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.tal__img img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.tal h2 em{font-style:italic;color:#19D46E}
+.tal__p{margin-top:14px;max-width:520px}
+.tal__list{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+.tal__list li{display:grid;gap:2px;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.tal__list b{font:800 1.02rem var(--font-t);color:#fff}
+.tal__list span{font-size:.92rem;color:rgba(255,255,255,.66)}
+.tal .hero__cta{margin-top:26px}
+.tal .tal__wa{color:#fff;background:transparent;border-color:rgba(255,255,255,.35)}
+@media(min-width:960px){.tal__in{grid-template-columns:1.05fr 1fr}}
+.sv-foto{margin-bottom:clamp(36px,6vw,64px)}
+.sv-foto img{aspect-ratio:21/9}
+@media(max-width:599px){.sv-foto img{aspect-ratio:3/2}}
