@@ -195,6 +195,7 @@
         '<div class="mod__cta">' +
           '<a class="btn btn--green" href="' + wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
           '<a class="btn btn--line" href="tel:+' + M.tel + '">Llamar</a>' +
+          '<a class="btn btn--reserva" href="' + uReserva(mo.id) + '">Reservar por ' + eur(reservaDe(mo.id).eur) + '</a>' +
         '</div>' +
         (pagina === 'moto' ? '' : '<a class="link mod__mas" href="' + uMoto(mo.id) + '">Ver la ficha completa y comparar</a>') +
       '</div>' +
@@ -525,6 +526,7 @@
         '<dl class="nano__datos">' + filas.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + esc(f[1]) + '</dd></div>'; }).join('') + '</dl>' +
         '<p class="nano__carnet"><b>Carnet:</b> ' + esc(mo.carnet) + '</p>' +
         '<a class="btn btn--green" href="' + wa('Hola, quiero más información sobre el ' + nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>' +
+        '<a class="btn btn--reserva" href="' + uReserva(mo.id) + '">Reservar por ' + eur(reservaDe(mo.id).eur) + '</a>' +
         '<a class="btn btn--line" href="' + uMoto(mo.id) + '">Ver la ficha completa</a>' +
       '</article>';
     }).join('');
@@ -621,7 +623,8 @@
         '<ul class="mcard__nums">' + numeros(mo).map(function (n) { return '<li><b>' + n[0] + '</b>' + n[1] + '</li>'; }).join('') + '</ul>' +
         '<div class="prod__pr">' + (mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '<small>Precio</small><b class="prod__c">a consultar</b>') + '</div>' +
         '<div class="mcard__cta"><a class="btn btn--navy" href="' + uMoto(mo.id) + '">Ver ficha</a>' +
-          (extra || '<button class="cmpbtn" data-cmp="' + mo.id + '" aria-pressed="false">Comparar</button>') + '</div>' +
+          (extra || '<button class="cmpbtn" data-cmp="' + mo.id + '" aria-pressed="false">Comparar</button>') +
+          '<a class="btn btn--reserva mcard__res" href="' + uReserva(mo.id) + '">Reservar por ' + eur(reservaDe(mo.id).eur) + '</a></div>' +
       '</div></article>';
   }
   function precioDe(mo) { return mo.conAyudas || mo.pvp || 0; }
