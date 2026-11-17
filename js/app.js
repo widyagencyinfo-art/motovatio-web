@@ -411,6 +411,19 @@
   }
 
   /* ---------- página de marca ---------- */
+  // 17-nov: sección propia de la marca (Nerva: batería que no arde + vídeo)
+  function marcaExtra(x) {
+    var box = $('#marcaExtra'); if (!box) return;
+    if (!x.extra) { box.hidden = true; return; }
+    var e = x.extra;
+    box.hidden = false;
+    box.innerHTML = '<div class="wrap mx__in">' +
+      '<div class="mx__txt"><p class="eyebrow">' + esc(e.eyebrow || '') + '</p><h2>' + esc(e.titulo) + '</h2><p class="mx__intro">' + esc(e.intro) + '</p>' +
+        '<ul class="mx__puntos">' + e.puntos.map(function (q) { return '<li><h3>' + esc(q[0]) + '</h3><p>' + esc(q[1]) + '</p></li>'; }).join('') + '</ul></div>' +
+      (e.video ? '<figure class="mx__video"><div class="mx__frame"><iframe src="https://www.youtube-nocookie.com/embed/' + e.video.id + '?rel=0" title="' + esc(e.video.titulo) + '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>' +
+        '<figcaption>' + esc(e.video.titulo) + ' · vídeo de ' + esc(e.video.canal) + '</figcaption></figure>' : '') +
+    '</div>';
+  }
   function paginaMarca() {
     var slug = document.body.getAttribute('data-m') || new URLSearchParams(location.search).get('m');
     var x = MARCAS.filter(function (m) { return m.slug === slug; })[0] || MARCAS[0];
@@ -419,7 +432,9 @@
     $('#bFrase').textContent = x.frase;
     $('#bTexto').textContent = x.texto;
     $('#bTags').innerHTML = (x.oficial ? '<span class="tag tag--green">Distribuidor oficial</span>' : '') +
+      (x.antiFuego ? '<span class="tag tag--fuego">Batería antiincendios</span>' : '') +
       x.tipos.map(function (t) { return '<span class="tag">' + TIPOS[t].n + '</span>'; }).join('');
+    marcaExtra(x);
     var pregunta = 'Hola, quiero información de las ' + x.nombre + ' eléctricas que tenéis en Motovatio.';
     ['#bWa', '#mWa'].forEach(function (s) { $(s).href = wa(pregunta); $(s).target = '_blank'; $(s).rel = 'noopener'; });
     $('#mTitulo').textContent = x.modelos.length === 1 ? 'El modelo de ' + x.nombre : 'La gama ' + x.nombre;

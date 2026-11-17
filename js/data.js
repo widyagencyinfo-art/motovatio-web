@@ -1569,6 +1569,7 @@ window.MARCAS = [
   "antiFuego": true,
   "frase": "La batería que no arde: BYD Blade de LFP.",
   "texto": "Nerva es una marca de Barcelona que monta baterías BYD Blade de litio-ferrofosfato (LFP), la química más estable que hay: en las pruebas de BYD no se incendia aunque se perfore o se aplaste. Además aguantan unos 6.000 ciclos de carga y tienen 5 años de garantía. Toda la gama se lleva con el carnet de coche o el A1.",
+  "extra": {"titulo": "La batería que no arde", "eyebrow": "Por qué Nerva", "intro": "Todas las Nerva llevan baterías BYD Blade de litio-ferrofosfato (LFP). Es la química que más aguanta sin calentarse: por eso la usa BYD en sus coches y por eso Nerva la ha elegido para sus scooters.", "puntos": [["No se incendia", "En la prueba de perforación de BYD, la batería Blade de LFP no echa humo ni llamas; en la misma prueba, las baterías de otras químicas sí arden. Más tranquilidad si la cargas en un garaje o en un trastero."], ["Dura muchísimo", "Unos 6.000 ciclos de carga: aunque la cargues cada dos días, te da para muchísimos años. Y 5 años de garantía de la batería."], ["Se carga en casa", "En un enchufe normal. La EXE II va del 0 al 80 % en unas 2 horas; la Cargo, en 1 h 40 min."], ["Marca de Barcelona", "Nerva diseña sus scooters en Barcelona y los fabrica junto a BYD, uno de los mayores fabricantes de baterías del mundo."]], "video": {"id": "3SyoE8MwPN0", "titulo": "Prueba de la Nerva EXE con baterías LFP de BYD", "canal": "Forococheselectricos"}},
   "modelos": [
    {
     "id": "nerva-exe-ii",
