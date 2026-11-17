@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20261117m">
+<link rel="stylesheet" href="css/styles.css?v=20261117v">
 </head>
 <body data-page="home">
 
@@ -27,10 +27,12 @@
 <main>
 
   <section class="hero">
-    <picture class="hero__bg">
-      <source media="(max-width: 959px)" srcset="img/anuncio/hero-m-900.webp 900w, img/anuncio/hero-m.webp 1536w" sizes="100vw" width="1536" height="2752">
-      <img src="img/anuncio/hero-d.webp" srcset="img/anuncio/hero-d-1600.webp 1600w, img/anuncio/hero-d.webp 2752w" sizes="100vw" width="2752" height="1536" alt="Un chico joven apoyado en una moto eléctrica Silence S02 gris, delante de una pared blanca con luz de ventana" fetchpriority="high">
-    </picture>
+    <div class="hero__bg">
+      <video autoplay muted loop playsinline preload="auto" poster="img/anuncio/hero-video-poster.jpg" aria-hidden="true">
+        <source src="img/anuncio/hero-video.webm" type="video/webm">
+        <source src="img/anuncio/hero-video.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="wrap hero__box">
       <div class="ad">
         <p class="ad__kick"><span class="pill__dot"></span>Plan Auto+ · hasta agotar fondos</p>
