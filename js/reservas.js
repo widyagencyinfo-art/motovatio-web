@@ -4,6 +4,6 @@
      novedad  = enlace de 500 € (las de Novedades, reserva anticipada)
    Mientras estén vacíos, el botón de pagar abre WhatsApp con la reserva ya escrita (no se pierde ninguna). */
 window.RESERVAS = {
-  moto: { eur: 300, stripe: '' },
-  novedad: { eur: 500, stripe: '' }
+  moto: { eur: 300, stripe: 'https://buy.stripe.com/bJe5kCgKe9De1X3dSCfbq00' },
+  novedad: { eur: 500, stripe: 'https://buy.stripe.com/bJe8wObpUcPq6dj5m6fbq01' }
 };
