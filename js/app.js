@@ -719,7 +719,7 @@
       ['si', 'Apartamos ' + (nov ? 'una unidad de la ' : 'la ') + '<b>' + esc(r.nombre) + '</b> a tu nombre.'],
       ['si', 'Los ' + E + ' <b>se descuentan del precio final</b>.'],
       ['no', 'Si decides no comprarla, <b>la reserva no se devuelve</b>.'],
-      ['info', 'Tienes <b>14 días</b> desde el pago para echarte atrás (compra a distancia) y si no podemos entregártela, te la devolvemos.']
+      ['info', 'Si por nuestra parte no podemos entregártela, te devolvemos la reserva.']
     ];
     var pasos = nov
       ? [['Pagas la reserva', 'Te llega el justificante al correo.'], ['Te llamamos', 'Cuando la moto esté disponible, cerramos el resto.'], ['A disfrutar', 'La recoges ya matriculada.']]
