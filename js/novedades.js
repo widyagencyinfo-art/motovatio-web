@@ -75,7 +75,7 @@ window.NOVEDADES = {
       frase: 'La S06 Max con una batería.',
       txt: 'Misma moto con una sola batería: más ligera y más ajustada de precio. Silence aún no ha publicado precio ni fecha.',
       img: 'img/novedades/s06-max-single.webp',
-      fondo: '#d4d4d8',
+      fondo: '#d3d3d8',
       precio: null,
       precioNota: 'Precio a confirmar',
       llegada: 'Fecha a confirmar',
@@ -92,5 +92,5 @@ window.NOVEDADES = {
       wa: 'Hola, quiero reservar con 500 € una unidad del Silence S06 Max Single antes de que llegue. ¿Cómo lo hacemos?'
     }
   ],
-  aviso: 'Silence S01: disponible en stock en Motovatio. Antes del verano Silence la renueva por completo.'
+  aviso: '' // 17-nov: quitado (Darío)
 };
