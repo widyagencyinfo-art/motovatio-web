@@ -875,3 +875,48 @@ b.pvp{color:var(--ink)!important;font-style:normal!important}
 .btn--reserva:hover{background:#cff1dc;border-color:#059A49}
 .mcard__res{grid-column:1/-1}
 .nano .btn--reserva{margin-top:8px}
+/* 17-nov (v2): página de reserva clara y para móvil */
+body[data-page="reservar"] .dock,body[data-page="reservar"] .wa-float,body[data-page="reserva-ok"] .dock,body[data-page="reserva-ok"] .wa-float{display:none}
+body[data-page="reservar"] .res{background:var(--soft);padding:18px 0 48px}
+.rsv{display:grid;gap:14px;margin-top:10px}
+.rsv__moto{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px}
+.rsv__moto img{width:100%;height:auto;border-radius:12px;background:#eef0ee;display:block}
+.rsv__nom h1{font:800 1.25rem/1.15 var(--font-t);margin:6px 0 8px}
+.rsv__nom .res__precio b{font-size:1.15rem}
+.rsv__nom .res__precio .p2{gap:2px 12px}
+.rsv__nom .res__precio .p2 b{font:800 1.15rem/1 var(--font-t)}
+.rsv__caja{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(11,18,32,.06)}
+.rsv__top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.rsv__eye{margin:0;font:700 .66rem var(--font-t);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.rsv__eur{margin:2px 0 0;font:800 italic 2.4rem/1 var(--font-t);letter-spacing:-.03em;color:var(--green)}
+.rsv__desc{margin:0;max-width:150px;text-align:right;font-size:.82rem;line-height:1.3;color:var(--body)}
+.rsv__cond{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+.rsv__c{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:.9rem;line-height:1.4;color:var(--body)}
+.rsv__c b{color:var(--ink)}
+.rsv__c i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center}
+.rsv__c i svg{width:14px;height:14px}
+.rsv__c--si i{background:var(--green-soft);color:var(--green)}
+.rsv__c--no i{background:#FDECEC;color:#D93A3F}
+.rsv__c--info i{background:#EEF1F5;color:var(--mute)}
+.rsv__c--info{font-size:.8rem;color:var(--mute)}
+.rsv .res__ok{color:var(--ink);background:var(--soft);border-color:var(--line);font-size:.86rem;padding:12px;margin:0 0 12px}
+.rsv .res__ok a{color:var(--green)}
+.rsv__pagar{min-height:54px;font-size:1.05rem}
+.rsv__pagar[aria-disabled="true"]{opacity:.5}
+.rsv__seguro{display:flex;align-items:center;justify-content:center;gap:6px;margin:10px 0 0;font-size:.78rem;color:var(--mute);text-align:center}
+.rsv__seguro svg{width:14px;height:14px;flex:none}
+.rsv__pasos{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.rsv__pasos ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px}
+.rsv__pasos li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start}
+.rsv__pasos li>b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font:800 .85rem var(--font-t)}
+.rsv__pasos h3{font:700 .98rem var(--font-t);margin:4px 0 2px}
+.rsv__pasos p{margin:0;font-size:.86rem;color:var(--body)}
+.rsv__dudas{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;color:var(--mute)}
+.rsv__dudas a{color:var(--green);font-weight:600}
+@media (min-width:900px){
+  .rsv{grid-template-columns:1.1fr .9fr;grid-template-areas:"moto caja" "pasos caja";align-items:start;gap:18px}
+  .rsv__moto{grid-area:moto;grid-template-columns:1fr;padding:18px}
+  .rsv__nom h1{font-size:1.9rem}
+  .rsv__caja{grid-area:caja;position:sticky;top:96px;padding:24px}
+  .rsv__pasos{grid-area:pasos}
+}

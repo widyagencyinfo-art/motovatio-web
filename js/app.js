@@ -709,31 +709,38 @@
     var r = reservaDe(new URLSearchParams(location.search).get('m') || ''), box = $('#resIn');
     if (!r) { box.innerHTML = '<div class="res__vacio"><h1>Elige la moto que quieres reservar</h1><p>Entra en la ficha de la moto y pulsa «Reservar».</p><a class="btn btn--green" href="motos">Ver todas las motos</a></div>'; return; }
     document.title = 'Reservar ' + r.nombre + ' · Motovatio';
-    var nov = r.tipo === 'novedad';
+    var nov = r.tipo === 'novedad', E = eur(r.eur);
+    var ico = {
+      si: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+      no: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg>',
+      info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></svg>'
+    };
     var cond = [
-      'Pagas <b>' + eur(r.eur) + '</b> y apartamos ' + (nov ? 'una unidad de la ' : 'la ') + '<b>' + esc(r.nombre) + '</b> a tu nombre.',
-      'Los ' + eur(r.eur) + ' <b>se descuentan del precio final</b> cuando la compras.',
-      'Si decides no comprarla, <b>la reserva no se devuelve</b>.',
-      'Como pagas a distancia, tienes <b>14 días</b> desde el pago para echarte atrás y te la devolvemos entera (derecho de desistimiento).',
-      'Si por nuestra parte no podemos entregártela, te devolvemos la reserva entera.',
-      nov ? 'Precio y fecha de llegada (' + esc(r.llegada || 'a confirmar') + ') son los que nos ha pasado el fabricante y pueden cambiar; te avisamos en cuanto llegue.' : 'Después del pago, Jorge te llama en horario de tienda para confirmar color, plazo de entrega y el precio final con las ayudas que te correspondan.'
+      ['si', 'Apartamos ' + (nov ? 'una unidad de la ' : 'la ') + '<b>' + esc(r.nombre) + '</b> a tu nombre.'],
+      ['si', 'Los ' + E + ' <b>se descuentan del precio final</b>.'],
+      ['no', 'Si decides no comprarla, <b>la reserva no se devuelve</b>.'],
+      ['info', 'Tienes <b>14 días</b> desde el pago para echarte atrás (compra a distancia) y si no podemos entregártela, te la devolvemos.']
     ];
+    var pasos = nov
+      ? [['Pagas la reserva', 'Te llega el justificante al correo.'], ['Te llamamos', 'Cuando la moto esté disponible, cerramos el resto.'], ['A disfrutar', 'La recoges ya matriculada.']]
+      : [['Pagas la reserva', 'Te llega el justificante al correo.'], ['Te llamamos', 'Confirmamos color, plazo y precio final con tus ayudas.'], ['A disfrutar', 'La recoges ya matriculada.']];
     var pagar = r.stripe
-      ? '<a class="btn btn--green btn--block res__pagar" id="resPagar" href="' + r.stripe + '?client_reference_id=' + encodeURIComponent(r.id) + '" aria-disabled="true">Pagar la reserva de ' + eur(r.eur) + '</a><p class="res__seguro">Pago seguro con tarjeta, Apple Pay o Google Pay (Stripe). No guardamos los datos de tu tarjeta.</p>'
-      : '<a class="btn btn--green btn--block res__pagar" id="resPagar" target="_blank" rel="noopener" href="' + wa('Hola, quiero reservar ' + (nov ? 'una unidad de la ' : 'la ') + r.nombre + ' con ' + eur(r.eur) + '. He leído las condiciones de la reserva. ¿Cómo lo pago?') + '" aria-disabled="true">Reservar por ' + eur(r.eur) + '</a><p class="res__seguro">Te escribimos por WhatsApp para hacer el pago y te mandamos el justificante.</p>';
+      ? '<a class="btn btn--green btn--block rsv__pagar" id="resPagar" href="' + r.stripe + '?client_reference_id=' + encodeURIComponent(r.id) + '" aria-disabled="true">Pagar ' + E + ' de reserva</a><p class="rsv__seguro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pago seguro con Stripe · Tarjeta, Apple Pay o Google Pay</p>'
+      : '<a class="btn btn--green btn--block rsv__pagar" id="resPagar" target="_blank" rel="noopener" href="' + wa('Hola, quiero reservar ' + (nov ? 'una unidad de la ' : 'la ') + r.nombre + ' con ' + E + '. He leído las condiciones de la reserva. ¿Cómo lo pago?') + '" aria-disabled="true">Reservar por ' + E + '</a><p class="rsv__seguro">Te escribimos por WhatsApp para hacer el pago.</p>';
     box.innerHTML =
       '<a class="back" href="' + r.ficha + '">Volver a la ficha</a>' +
-      '<div class="res__grid">' +
-        '<div class="res__moto">' + (r.img ? '<img src="' + r.img + '" alt="' + esc(r.nombre) + '" width="900" height="675">' : '') +
-          '<p class="res__chip">' + (nov ? 'Reserva anticipada' : 'Reserva') + '</p><h1>' + esc(r.nombre) + '</h1>' +
-          (r.precio ? '<div class="res__precio">' + r.precio + '</div>' : '') + '</div>' +
-        '<div class="res__caja">' +
-          '<p class="res__eye">Reserva</p><p class="res__eur">' + eur(r.eur) + '</p>' +
-          '<h2>Condiciones de la reserva</h2><ul class="res__cond">' + cond.map(function (c) { return '<li>' + c + '</li>'; }).join('') + '</ul>' +
-          '<label class="res__ok"><input type="checkbox" id="resAcepto"><span>He leído y acepto las condiciones de la reserva y la <a href="privacidad" target="_blank">política de privacidad</a>.</span></label>' +
+      '<div class="rsv">' +
+        '<div class="rsv__moto">' + (r.img ? '<img src="' + r.img + '" alt="' + esc(r.nombre) + '" width="900" height="675">' : '') +
+          '<div class="rsv__nom"><p class="res__chip">' + (nov ? 'Reserva anticipada' : 'Reserva') + '</p><h1>' + esc(r.nombre) + '</h1>' +
+          (r.precio ? '<div class="res__precio">' + r.precio + '</div>' : '') + '</div></div>' +
+        '<div class="rsv__caja">' +
+          '<div class="rsv__top"><div><p class="rsv__eye">Reserva</p><p class="rsv__eur">' + E + '</p></div><p class="rsv__desc">Se descuenta del precio final de tu moto</p></div>' +
+          '<ul class="rsv__cond">' + cond.map(function (c) { return '<li class="rsv__c rsv__c--' + c[0] + '"><i>' + ico[c[0]] + '</i><span>' + c[1] + '</span></li>'; }).join('') + '</ul>' +
+          '<label class="res__ok"><input type="checkbox" id="resAcepto"><span>Acepto las condiciones de la reserva y la <a href="privacidad" target="_blank">política de privacidad</a>.</span></label>' +
           pagar +
-          '<p class="res__dudas">¿Dudas antes de pagar? <a href="' + wa('Hola, tengo una duda antes de reservar la ' + r.nombre + '.') + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>.</p>' +
         '</div>' +
+        '<div class="rsv__pasos"><p class="rsv__eye">Cómo sigue</p><ol>' + pasos.map(function (p, k) { return '<li><b>' + (k + 1) + '</b><div><h3>' + p[0] + '</h3><p>' + p[1] + '</p></div></li>'; }).join('') + '</ol>' +
+          '<p class="rsv__dudas">¿Dudas antes de pagar? <a href="' + wa('Hola, tengo una duda antes de reservar la ' + r.nombre + '.') + '" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p></div>' +
       '</div>';
     var ok = $('#resAcepto'), btn = $('#resPagar');
     btn.addEventListener('click', function (e) { if (!ok.checked) { e.preventDefault(); ok.closest('label').classList.add('res__ok--err'); ok.focus(); } });
