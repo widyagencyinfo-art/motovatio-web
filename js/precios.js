@@ -89,4 +89,10 @@ window.PRECIOS = {
   'next-mojito-powerpack': { pvp: 4399, conAyudas: 3038, planAuto: 825, irpf: 536, ayudaTxt: 'con Plan Auto+ e IRPF' }, // gama completa 13-nov (https://wearenextmotors.com/products/mojito)
   'next-nx1-powerpack': { pvp: 2499 }, // gama completa 13-nov (https://wearenextmotors.com/products/nx1)
   'next-nx-plus-ls-2-baterias': { pvp: 2999 }, // gama completa 13-nov (https://wearenextmotors.com/products/nxplusls)
+
+  // Nerva (17-nov-2026, PVP de la marca)
+  'nerva-exe-ii': { pvp: 7290, conAyudas: 5495, planAuto: 825, irpf: 970, ayudaTxt: 'con Plan Auto+ e IRPF' },
+  'nerva-exe': { pvp: 5990, conAyudas: 4390, planAuto: 825, irpf: 775, ayudaTxt: 'con Plan Auto+ e IRPF' },
+  'nerva-lift': { pvp: 4690, conAyudas: 3285, planAuto: 825, irpf: 580, ayudaTxt: 'con Plan Auto+ e IRPF' },
+  'nerva-cargo': { pvp: 5590, conAyudas: 4050, planAuto: 825, irpf: 715, ayudaTxt: 'con Plan Auto+ e IRPF' },
 };

@@ -1561,6 +1561,105 @@ window.MARCAS = [
     "img": "img/modelos/vmoto-citi-2-baterias.webp"
    }
   ]
+ },
+ {
+  "slug": "nerva",
+  "nombre": "Nerva",
+  "origen": "Barcelona",
+  "antiFuego": true,
+  "frase": "La batería que no arde: BYD Blade de LFP.",
+  "texto": "Nerva es una marca de Barcelona que monta baterías BYD Blade de litio-ferrofosfato (LFP), la química más estable que hay: en las pruebas de BYD no se incendia aunque se perfore o se aplaste. Además aguantan unos 6.000 ciclos de carga y tienen 5 años de garantía. Toda la gama se lleva con el carnet de coche o el A1.",
+  "modelos": [
+   {
+    "id": "nerva-exe-ii",
+    "n": "EXE II",
+    "tipo": "scooter",
+    "lic": "B",
+    "carnet": "Carnet de coche (B) con 3 años, o A1",
+    "vmax": 130,
+    "auto": 180,
+    "autoNota": "en modo Eco, según la marca",
+    "potNom": 11,
+    "potPico": 19,
+    "antiFuego": true,
+    "bat": "7,83 kWh · BYD Blade LFP antiincendios · fija",
+    "carga": "Se carga en un enchufe normal o en un cargador tipo 2: del 0 al 80 % en unas 2 horas y completa en 2 h 40 min.",
+    "destacado": "El maxiscooter de 130 km/h con batería BYD Blade antiincendios y hasta 180 km de autonomía, con el carnet de coche.",
+    "extras": [
+     "Batería BYD Blade de LFP (litio-ferrofosfato), la química más estable: según BYD no se incendia aunque se perfore o se aplaste.",
+     "Unos 6.000 ciclos de carga y 5 años de garantía de batería",
+     "Doble disco delantero con ABS",
+     "3 modos de conducción: Eco, Normal y Sport"
+    ],
+    "img": "img/modelos/nerva-exe-ii.webp"
+   },
+   {
+    "id": "nerva-exe",
+    "n": "EXE",
+    "tipo": "scooter",
+    "lic": "B",
+    "carnet": "Carnet de coche (B) con 3 años, o A1",
+    "vmax": 125,
+    "auto": 150,
+    "autoNota": "en modo Eco, según la marca",
+    "pot": 8.9,
+    "antiFuego": true,
+    "bat": "5,76 kWh · BYD LFP antiincendios · fija",
+    "carga": "Se carga en un enchufe normal: completa en unas 4 horas y 20 minutos.",
+    "destacado": "El maxiscooter con el que nació Nerva: 125 km/h, batería BYD de LFP que no arde y hasta 150 km en modo Eco.",
+    "extras": [
+     "Batería BYD Blade de LFP (litio-ferrofosfato), la química más estable: según BYD no se incendia aunque se perfore o se aplaste.",
+     "5 años de garantía de batería",
+     "3 modos de conducción: Eco, Normal y Sport"
+    ],
+    "img": "img/modelos/nerva-exe.webp"
+   },
+   {
+    "id": "nerva-lift",
+    "n": "Lift",
+    "tipo": "scooter",
+    "lic": "B",
+    "carnet": "Carnet de coche (B) con 3 años, o A1",
+    "vmax": 100,
+    "auto": 130,
+    "autoNota": "en modo Eco, según la marca",
+    "potNom": 5.9,
+    "potPico": 9,
+    "antiFuego": true,
+    "bat": "4,15 kWh · BYD Blade LFP antiincendios · fija",
+    "carga": "Se carga en un enchufe normal: del 0 al 80 % en unas 3 horas y completa en 3 h 20 min.",
+    "destacado": "El scooter de Nerva para ir a diario: 100 km/h, hasta 130 km y la batería BYD Blade que no arde.",
+    "extras": [
+     "Batería BYD Blade de LFP (litio-ferrofosfato), la química más estable: según BYD no se incendia aunque se perfore o se aplaste.",
+     "5 años de garantía de batería",
+     "3 modos de conducción: Eco, Normal y Sport"
+    ],
+    "img": "img/modelos/nerva-lift.webp"
+   },
+   {
+    "id": "nerva-cargo",
+    "n": "Cargo",
+    "tipo": "reparto",
+    "lic": "B",
+    "carnet": "Carnet de coche (B) con 3 años, o A1",
+    "vmax": 110,
+    "auto": 140,
+    "autoNota": "en modo Eco, según la marca",
+    "potNom": 5.9,
+    "potPico": 9.9,
+    "antiFuego": true,
+    "bat": "5,22 kWh · BYD Blade LFP antiincendios · fija",
+    "carga": "Carga rápida: del 0 al 80 % en 1 h 40 min y completa en unas 2 horas.",
+    "destacado": "El scooter de reparto de Nerva: cajón trasero, 110 km/h, hasta 140 km y la batería BYD Blade que no arde.",
+    "extras": [
+     "Batería BYD Blade de LFP (litio-ferrofosfato), la química más estable: según BYD no se incendia aunque se perfore o se aplaste.",
+     "Preparado para reparto, con cajón trasero",
+     "5 años de garantía de batería",
+     "3 modos de conducción: Eco, Normal y Sport"
+    ],
+    "img": "img/modelos/nerva-cargo.webp"
+   }
+  ]
  }
 ];
 

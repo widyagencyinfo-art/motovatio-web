@@ -213,7 +213,7 @@
       '<summary>' +
         (mo.img ? '<img class="macc__th" src="' + mo.img + '" width="900" height="675" alt="" loading="lazy">' : '<span class="macc__th"></span>') +
         '<span class="macc__name">' + esc(mo.n) + (mo.version ? ' <small>' + esc(mo.version) + '</small>' : '') + '</span>' +
-        '<span class="macc__res">' + licHtml(mo) + '<b>' + (t ? t.corto : 'Eléctrica') + (mo.extraible ? ' · batería extraíble' : '') + '</b>' + (mo.destacado ? esc(mo.destacado) : '') + '</span>' +
+        '<span class="macc__res">' + licHtml(mo) + '<b>' + (t ? t.corto : 'Eléctrica') + (mo.extraible ? ' · batería extraíble' : '') + (mo.antiFuego ? ' · batería antiincendios' : '') + '</b>' + (mo.destacado ? esc(mo.destacado) : '') + '</span>' +
         '<span class="macc__pr">' + (mo.pvp ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>') : '<small>precio</small><b class="macc__c">a consultar</b>') + '</span>' +
         '<span class="acc__ico" aria-hidden="true"></span>' +
       '</summary>' +
@@ -548,7 +548,7 @@
         if (mo.potPico) datos.push(['Potencia pico', num(mo.potPico) + ' kW · ' + cv(mo.potPico) + ' CV']);
         if (!mo.potNom && !mo.potPico && mo.pot) datos.push(['Potencia', num(mo.pot) + ' kW · ' + cv(mo.pot) + ' CV']);
         return '<article class="cartel">' +
-          '<header class="cartel__top"><img src="img/logo-horizontal.svg" alt="Motovatio"><span>' + (t ? t.corto : '') + (mo.extraible ? ' · batería extraíble' : '') + '</span></header>' +
+          '<header class="cartel__top"><img src="img/logo-horizontal.svg" alt="Motovatio"><span>' + (t ? t.corto : '') + (mo.extraible ? ' · batería extraíble' : '') + (mo.antiFuego ? ' · batería antiincendios' : '') + '</span></header>' +
           '<div class="cartel__mid">' +
             '<div class="cartel__nom"><p>' + esc(x.nombre) + '</p><h2>' + esc(mo.n) + '</h2>' + (mo.version ? '<small>' + esc(mo.version) + '</small>' : '') + '</div>' +
             '<div class="cartel__pr">' + (mo.pvp
@@ -615,7 +615,7 @@
   function tarjeta(mo, extra) {
     var x = mo.marca, nombre = nombreModelo(x, mo), t = TIPOS[mo.tipo];
     return '<article class="prod mcard">' +
-      '<a class="prod__img" href="' + uMoto(mo.id) + '"><img src="' + mo.img + '" width="900" height="675" alt="' + esc(nombre) + '" loading="lazy">' + (mo.extraible ? '<span class="prod__tag">Batería extraíble</span>' : '') + '</a>' +
+      '<a class="prod__img" href="' + uMoto(mo.id) + '"><img src="' + mo.img + '" width="900" height="675" alt="' + esc(nombre) + '" loading="lazy">' + (mo.extraible ? '<span class="prod__tag">Batería extraíble</span>' : (mo.antiFuego ? '<span class="prod__tag prod__tag--fuego">Batería antiincendios</span>' : '')) + '</a>' +
       '<div class="prod__body">' +
         '<p class="prod__tipo">' + esc(x.nombre) + ' · ' + t.corto + '</p>' +
         '<h3><a href="' + uMoto(mo.id) + '">' + esc(mo.n) + (mo.version ? ' <small>' + esc(mo.version) + '</small>' : '') + '</a></h3>' +
@@ -759,7 +759,7 @@
     if (!document.body.getAttribute('data-id')) document.title = nombre + ' · ' + (esB(mo) ? 'con carnet de coche' : (mo.lic === 'AM' ? 'con carnet AM' : 'carnet de moto ' + mo.lic)) + ' · Motovatio';
     var back = $('#fBack'); back.href = '' + uMarca(x.slug); back.textContent = 'Todas las ' + x.nombre;
     $('#fTags').innerHTML = '<span class="tag tag--green">' + esc(x.nombre) + '</span><span class="tag">' + t.corto + '</span>' +
-      (mo.version ? '<span class="tag">' + esc(mo.version) + '</span>' : '') + (mo.extraible ? '<span class="tag">Batería extraíble</span>' : '');
+      (mo.version ? '<span class="tag">' + esc(mo.version) + '</span>' : '') + (mo.extraible ? '<span class="tag">Batería extraíble</span>' : '') + (mo.antiFuego ? '<span class="tag tag--fuego">Batería antiincendios</span>' : '');
     $('#fNombre').textContent = mo.n;
     $('#fFrase').textContent = mo.destacado || '';
     $('#fLic').innerHTML = licHtml(mo);
@@ -833,7 +833,8 @@
         ['Potencia nominal', function (mo) { return mo.potNom ? num(mo.potNom) + ' kW · ' + cv(mo.potNom) + ' CV' : (mo.pot ? num(mo.pot) + ' kW' : '—'); }],
         ['Potencia pico', function (mo) { return mo.potPico ? num(mo.potPico) + ' kW · ' + cv(mo.potPico) + ' CV' : '—'; }, function (mo) { return mo.potPico || null; }],
         ['Batería', function (mo) { return bat(mo) ? num(bat(mo)) + ' kWh' : '—'; }, function (mo) { return bat(mo) || null; }],
-        ['Se saca para cargar', function (mo) { return mo.extraible ? 'Sí' : 'No, se enchufa la moto'; }]
+        ['Se saca para cargar', function (mo) { return mo.extraible ? 'Sí' : 'No, se enchufa la moto'; }],
+        ['Batería antiincendios', function (mo) { return mo.antiFuego ? 'Sí, LFP' : '—'; }]
       ];
       var cuerpo = filas.map(function (f) {
         var vals = f[2] ? ms.map(f[2]) : [], validos = vals.filter(function (v) { return v !== null; });

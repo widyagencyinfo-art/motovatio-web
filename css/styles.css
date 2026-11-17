@@ -920,3 +920,6 @@ body[data-page="reservar"] .res{background:var(--soft);padding:18px 0 48px}
   .rsv__caja{grid-area:caja;position:sticky;top:96px;padding:24px}
   .rsv__pasos{grid-area:pasos}
 }
+/* 17-nov: Nerva, batería antiincendios (BYD Blade LFP) */
+.prod__img .prod__tag.prod__tag--fuego{background:#FFF1E8;color:#B4470C;border-color:#FFD9C2}
+.tag--fuego{background:#FFF1E8!important;color:#B4470C!important;border-color:#FFD9C2!important}
