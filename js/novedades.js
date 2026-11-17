@@ -1,5 +1,5 @@
 /* Motovatio · Novedades y reservas anticipadas (modelos que aún no han llegado).
-   Datos de Silence, 13-nov-2026. Aparte de data.js para que no entren en catálogo, filtros ni carteles. */
+   Datos de Silence, 13-nov-2026; S02 Paddock y S06 Max revisados con la Product Letter de Silence (17-nov-2026), fotos sacadas de ella. Aparte de data.js para que no entren en catálogo, filtros ni carteles. */
 window.NOVEDADES = {
   senal: 500,
   modelos: [
@@ -33,17 +33,19 @@ window.NOVEDADES = {
       id: 's02-paddock', nombre: 'Silence S02 Paddock · Ducati Corse', corto: 'S02 Paddock', etiqueta: 'Edición especial · Silence',
       frase: 'El S02 vestido de Ducati Corse.',
       txt: 'Edición Rosso Ducati del scooter urbano de Silence, con batería extraíble. Se conduce con carnet B desde los 3 años de carnet.',
-      img: 'img/modelos/silence-s02-l3e.webp',
-      fondo: '#f4f5f5',
+      img: 'img/novedades/s02-paddock.webp',
+      fondo: '#0e0e10',
       precio: [['PVP España', 4290]],
       precioNota: 'Precio de venta recomendado',
       llegada: 'Finales de enero de 2027',
       datos: [
-        ['Categoría', 'L3e'],
+        ['Carnet', 'A1 o B con 3 años'],
         ['Velocidad', '85 km/h'],
-        ['Potencia', '6 kW'],
-        ['Autonomía', '138 km'],
-        ['Peso', '91 kg sin batería']
+        ['Potencia', '4 kW (6,3 kW pico)'],
+        ['0-50 km/h', '4,65 s'],
+        ['Autonomía', '138 km (WMTC)'],
+        ['Peso', '132 kg con batería'],
+        ['De serie', 'Plásticos y asideros rojo Ducati, amortiguador amarillo, neumáticos Pirelli, pantalla TFT']
       ],
       wa: 'Hola, quiero reservar con 500 € una unidad del Silence S02 Paddock (Ducati Corse) antes de que llegue. ¿Cómo lo hacemos?'
     },
@@ -51,13 +53,20 @@ window.NOVEDADES = {
       id: 's06-max-dual', nombre: 'Silence S06 Max Dual', corto: 'S06 Max Dual', etiqueta: 'Novedad · Silence',
       frase: 'Dos baterías y 11 kW para viajar más lejos.',
       txt: 'La versión grande del S06: dos baterías y más potencia.',
-      img: null,
+      img: 'img/novedades/s06-max.webp',
+      fondo: '#eeedec',
       precio: [['PVP España', 7400]],
       precioNota: 'Precio de venta recomendado',
       llegada: 'Primeras unidades a finales de 2027',
       datos: [
-        ['Baterías', '2'],
-        ['Potencia', '11 kW']
+        ['Baterías', '2 (extraíbles)'],
+        ['Carnet', 'A1 o B con 3 años'],
+        ['Potencia', '11 kW (15 kW pico)'],
+        ['Velocidad', '130 km/h'],
+        ['0-50 km/h', '3,1 s'],
+        ['Autonomía', '220 km (WMTC)'],
+        ['Peso', '215 kg con baterías'],
+        ['Bajo el asiento', '2 cascos']
       ],
       wa: 'Hola, quiero reservar con 500 € una unidad del Silence S06 Max Dual antes de que llegue. ¿Cómo lo hacemos?'
     },
@@ -65,13 +74,20 @@ window.NOVEDADES = {
       id: 's06-max-single', nombre: 'Silence S06 Max Single', corto: 'S06 Max Single', etiqueta: 'Novedad · Silence',
       frase: 'La S06 Max con una batería.',
       txt: 'Misma moto con una sola batería: más ligera y más ajustada de precio. Silence aún no ha publicado precio ni fecha.',
-      img: null,
+      img: 'img/novedades/s06-max.webp',
+      fondo: '#eeedec',
       precio: null,
       precioNota: 'Precio a confirmar',
       llegada: 'Fecha a confirmar',
       datos: [
-        ['Baterías', '1'],
-        ['Potencia', '7 kW (9 kW pico)']
+        ['Baterías', '1 (extraíble)'],
+        ['Carnet', 'A1 o B con 3 años'],
+        ['Potencia', '7 kW (9 kW pico)'],
+        ['Velocidad', '114 km/h'],
+        ['0-50 km/h', '3,9 s'],
+        ['Autonomía', '95 km (WMTC)'],
+        ['Peso', '174 kg con batería'],
+        ['Bajo el asiento', '2 cascos']
       ],
       wa: 'Hola, quiero reservar con 500 € una unidad del Silence S06 Max Single antes de que llegue. ¿Cómo lo hacemos?'
     }
