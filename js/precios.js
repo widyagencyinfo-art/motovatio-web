@@ -30,6 +30,7 @@ window.PRECIOS = {
   'velca-calima-s': { pvp: 3690, conAyudas: 2295, planAuto: 990, irpf: 405, ayudaTxt: 'con Plan Auto+ e IRPF' },                                       // Calima S
   'velca-tramontana-s': { pvp: 3790, conAyudas: 2380, planAuto: 990, irpf: 420, ayudaTxt: 'con Plan Auto+ e IRPF' },                                   // Tramontana S MY26
   'velca-one': { pvp: 6290, conAyudas: 4645, planAuto: 825, irpf: 820, ayudaTxt: 'con Plan Auto+ e IRPF' },                                            // One
+  'velca-one-lite': { pvp: 5390, conAyudas: 3880, planAuto: 825, irpf: 685, ayudaTxt: 'con Plan Auto+ e IRPF' },                                       // One Lite
   'velca-eon': { pvp: 7490, conAyudas: 5525, planAuto: 990, irpf: 975, ayudaTxt: 'con Plan Auto+ e IRPF' },                                            // Eon
   'velca-boraplus': { pvp: 1990 },                                       // Bora+
   'velca-calima-50': { pvp: 2790 },                                      // Calima 50

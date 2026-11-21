@@ -390,6 +390,29 @@ window.MARCAS = [
     "img": "img/modelos/velca-one.webp"
    },
    {
+    "id": "velca-one-lite",
+    "n": "One Lite",
+    "tipo": "scooter",
+    "lic": "B",
+    "carnet": "Carnet de coche (B) con 3 años, o A1",
+    "vmax": 130,
+    "auto": 220,
+    "autoNota": "según el distribuidor",
+    "autoHasta": true,
+    "potNom": 7,
+    "potPico": 12,
+    "bat": "8,2 kWh · fija, se carga en la moto",
+    "carga": "Batería integrada: se carga en la propia moto.",
+    "destacado": "La Velca One a un precio más ajustado, sin Apple CarPlay ni Android Auto, y con carnet de coche.",
+    "extras": [
+     "ABS en ambas ruedas",
+     "Arranque sin llave (keyless)",
+     "Neumáticos Michelin",
+     "Homologada para 2 personas"
+    ],
+    "img": "img/modelos/velca-one-lite.webp"
+   },
+   {
     "id": "velca-eon",
     "n": "Eon",
     "tipo": "scooter",

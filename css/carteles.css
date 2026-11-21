@@ -28,6 +28,12 @@ h1,h2,p,dl,dd{margin:0}
 .cartel__pr b.cartel__c{font-size:6.4cqw;color:var(--negro);white-space:normal;max-width:8ch}
 .cartel__pr small{font:600 1.75cqw "Inter",sans-serif;color:var(--verde);margin-top:.6cqw}
 .cartel__pr em{font:500 1.6cqw "Inter",sans-serif;font-style:normal;color:var(--gris);margin-top:1cqw}
+/* PVP tachado arriba y «con ayudas» grande en verde (esta hoja no carga styles.css, por eso van aquí las reglas de .p2) */
+.cartel__pr .p2{display:flex;flex-direction:column;align-items:flex-end;gap:1.4cqw}
+.cartel__pr .p2__f{display:flex;flex-direction:column;align-items:flex-end;gap:.4cqw}
+.cartel__pr .p2__l{font:700 1.75cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);white-space:nowrap}
+.cartel__pr .p2__f--ay .p2__l{color:var(--verde)}
+.cartel__pr .p2__f:first-child b{font:700 italic 5.6cqw/1 "Plus Jakarta Sans",sans-serif;letter-spacing:-.02em;color:#8A94A3;text-decoration:line-through;text-decoration-thickness:.4cqw}
 .cartel__lic{align-self:flex-start;padding:1.1cqw 2.6cqw;border-radius:99px;background:var(--negro);color:#fff;font:800 2.5cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.01em}
 .cartel__datos{display:grid;grid-template-columns:repeat(4,1fr);gap:0 2.4cqw;margin-top:2.6cqw;padding-top:2.2cqw;border-top:1px solid var(--linea)}
 .cartel__datos dt{font:700 1.5cqw "Plus Jakarta Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
