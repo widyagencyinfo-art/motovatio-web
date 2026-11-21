@@ -11,7 +11,7 @@
 // Un modelo sin línea (o con la línea comentada) sale como «Precio a consultar».
 
 // se suma a todas las motos y sale en pequeño debajo de cada precio
-window.GASTOS = { eur: 300, txt: 'matriculación, preentrega y transporte' };
+window.GASTOS = { eur: 300, txt: 'matriculación, preentrega y transporte', especiales: { 'silence-s04-l6e': 450, 'silence-s04-l6e-vivo': 450, 'silence-s04-l7e-plus': 450, 'silence-s04-customized': 450 } };
 
 window.PRECIOS = {
   // Silence

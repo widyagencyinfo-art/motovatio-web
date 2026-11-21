@@ -149,14 +149,16 @@
   function num(n) { return String(n).replace('.', ','); }
   function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+$)/g, '.') + ' €'; }
   function cv(kw) { return Math.round(kw * 1.36); }
-  function gastosTxt() { return GASTOS ? '+ ' + eur(GASTOS.eur) + ' de ' + GASTOS.txt : ''; }
+  // 21-nov-2026 (Jorge): el Silence S04, por ser cuadriciclo, 450 € (GASTOS.especiales en precios.js)
+  function gastosEur(mo) { return (mo && GASTOS && GASTOS.especiales && GASTOS.especiales[mo.id]) || (GASTOS && GASTOS.eur); }
+  function gastosTxt(mo) { return GASTOS ? '+ ' + eur(gastosEur(mo)) + ' de ' + GASTOS.txt : ''; }
   // 17-nov-2026 (Darío): los dos precios igual de grandes: «Antes de ayudas» (oscuro, sin tachar) y «Con ayudas e IRPF» (verde)
   function dosPrecios(mo) { return '<span class="p2"><span class="p2__f"><span class="p2__l">Precio PVP</span><b>' + eur(mo.pvp) + '</b></span><span class="p2__f p2__f--ay"><span class="p2__l">Con ayudas e IRPF*</span><b>' + eur(mo.conAyudas) + '</b></span></span>'; }
-  function gastosHtml() { return GASTOS ? '<p class="gastos">' + esc(gastosTxt()) + '</p>' : ''; }
+  function gastosHtml(mo) { return GASTOS ? '<p class="gastos">' + esc(gastosTxt(mo)) + '</p>' : ''; }
   function precioHtml(mo) {
     if (!mo.pvp) return '<p class="pr pr--c"><b>Precio a consultar</b></p>';
-    if (mo.conAyudas) return '<div class="pr pr--2">' + dosPrecios(mo) + '</div>' + gastosHtml();
-    return '<p class="pr"><small>Precio PVP</small><b>' + eur(mo.pvp) + '</b></p>' + gastosHtml();
+    if (mo.conAyudas) return '<div class="pr pr--2">' + dosPrecios(mo) + '</div>' + gastosHtml(mo);
+    return '<p class="pr"><small>Precio PVP</small><b>' + eur(mo.pvp) + '</b></p>' + gastosHtml(mo);
   }
   // carnet: «B» = carnet de coche con 3 años o A1 · «AM» = ciclomotor · «Bsolo» = solo carnet de coche
   //         «A2» y «A» = carnet de moto (13-nov-2026: gama completa de Zero y Ultraviolette)
@@ -453,7 +455,7 @@
     }
 
     $('#models').innerHTML = x.modelos.map(function (mo, k) { return desplegableModelo(x, mo, k === 0); }).join('');
-    var gn = $('#gastosNota'); if (gn && GASTOS) gn.textContent = ' A todos se les suman ' + eur(GASTOS.eur) + ' de ' + GASTOS.txt + '.';
+    var gn = $('#gastosNota'); if (gn && GASTOS) gn.textContent = ' A todos se les suman ' + eur(GASTOS.eur) + ' de ' + GASTOS.txt + (GASTOS.especiales && x.modelos.some(function (m) { return GASTOS.especiales[m.id]; }) ? ' (450 € el Silence S04, por ser cuadriciclo)' : '') + '.';
     var an = $('#ayudasNota'); if (an) an.hidden = !x.modelos.some(function (m) { return m.conAyudas; });
 
     $('#others').innerHTML = MARCAS.filter(function (m) { return m.slug !== x.slug; })
@@ -571,7 +573,7 @@
           '<div class="cartel__mid">' +
             '<div class="cartel__nom"><p>' + esc(x.nombre) + '</p><h2>' + esc(mo.n) + '</h2>' + (mo.version ? '<small>' + esc(mo.version) + '</small>' : '') + '</div>' +
             '<div class="cartel__pr">' + (mo.pvp
-              ? (mo.conAyudas ? dosPrecios(mo) : '<b>' + eur(mo.pvp) + '</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '')
+              ? (mo.conAyudas ? dosPrecios(mo) : '<b>' + eur(mo.pvp) + '</b>') + (GASTOS ? '<em>' + esc(gastosTxt(mo)) + '</em>' : '')
               : '<b class="cartel__c">Pregunta el precio</b>') + '</div>' +
           '</div>' +
           (l ? '<p class="cartel__lic">' + l[1] + '</p>' : '') +
@@ -784,7 +786,7 @@
     $('#fLic').innerHTML = licHtml(mo);
     $('#fPrecio').innerHTML = (mo.pvp
       ? (mo.conAyudas ? dosPrecios(mo) : '<small>Precio PVP</small><b class="pvp">' + eur(mo.pvp) + '</b>')
-      : '<b class="fprecio__c">Precio a consultar</b>') + (GASTOS ? '<em>' + esc(gastosTxt()) + '</em>' : '');
+      : '<b class="fprecio__c">Precio a consultar</b>') + (GASTOS ? '<em>' + esc(gastosTxt(mo)) + '</em>' : '');
     $('#fWa').href = wa('Hola, quiero más información sobre ' + art(mo) + nombre + '.');
     $('#fWa').target = '_blank'; $('#fWa').rel = 'noopener';
     if ($('#fRes')) { var rr = reservaDe(mo.id); $('#fRes').href = uReserva(mo.id); $('#fRes').textContent = 'Reservar por ' + eur(rr.eur); }
